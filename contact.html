@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chrono | Contact</title>
+  <link rel="stylesheet" href="./styles/styles.css" />
+  <style>
+    :root {
+      --color-bg: #f7f8fa;
+      --color-text: #232946;
+      --color-card: #fff;
+      --color-card-shadow: #23294622;
+      --color-accent: #00ffe7;
+      --color-btn-bg: #fff;
+      --color-btn-text: #232946;
+      --color-btn-border: #e0e0e0;
+      --color-btn-hover: #232946;
+      --color-header-bg: #fff;
+      --color-header-text: #232946;
+      --color-highlight: #FFD700;
+      --color-input-bg: #f7f8fa;
+      --color-input-border: #e0e0e0;
+      --color-input-focus: #00ffe7;
+      --color-form-shadow: #00ffe733;
+    }
+    body.dark-mode {
+      --color-bg: #18192a;
+      --color-text: #e0e0e0;
+      --color-card: #232946;
+      --color-card-shadow: #00ffe755;
+      --color-accent: #00ffe7;
+      --color-btn-bg: #232946;
+      --color-btn-text: #00ffe7;
+      --color-btn-border: #35374a;
+      --color-btn-hover: #35374a;
+      --color-header-bg: #232946;
+      --color-header-text: #e0e0e0;
+      --color-highlight: #FFD700;
+      --color-input-bg: #232946;
+      --color-input-border: #35374a;
+      --color-input-focus: #FFD700;
+      --color-form-shadow: #00ffe755;
+    }
+    body.light-mode {
+      --color-bg: #f7f8fa;
+      --color-text: #232946;
+      --color-card: #fff;
+      --color-card-shadow: #23294622;
+      --color-accent: #00ffe7;
+      --color-btn-bg: #fff;
+      --color-btn-text: #232946;
+      --color-btn-border: #e0e0e0;
+      --color-btn-hover: #232946;
+      --color-header-bg: #fff;
+      --color-header-text: #232946;
+      --color-highlight: #FFD700;
+      --color-input-bg: #f7f8fa;
+      --color-input-border: #e0e0e0;
+      --color-input-focus: #00ffe7;
+      --color-form-shadow: #00ffe733;
+    }
+    body {
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-family: 'Orbitron', Arial, sans-serif;
+      transition: background 0.3s, color 0.3s;
+    }
+    header, nav {
+      background: var(--color-header-bg);
+      color: var(--color-header-text);
+      transition: background 0.3s, color 0.3s;
+    }
+    nav a {
+      color: var(--color-header-text);
+      transition: color 0.3s;
+    }
+    .contact-card {
+      background: var(--color-card);
+      color: var(--color-text);
+      max-width: 420px;
+      margin: 3.5rem auto 2.5rem auto;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px var(--color-form-shadow);
+      padding: 2.2rem 1.5rem 1.5rem 1.5rem;
+      text-align: center;
+      position: relative;
+      animation: fadeInUp 0.7s;
+    }
+    .contact-card h2 {
+      color: var(--color-accent);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+    }
+    .contact-card p {
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+    .contact-card form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      gap: 0;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      max-width: 340px;
+      box-sizing: border-box;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0.7rem 1rem;
+      border-radius: 10px;
+      border: 1.5px solid var(--color-input-border);
+      background: var(--color-input-bg);
+      color: var(--color-text);
+      font-size: 1rem;
+      margin-bottom: 1.1rem;
+      outline: none;
+      transition: border 0.2s, background 0.2s, color 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px var(--color-card-shadow);
+      resize: none;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: var(--color-input-focus);
+      box-shadow: 0 0 0 2px var(--color-input-focus);
+    }
+    .contact-form .btn {
+      background: var(--color-btn-bg);
+      color: var(--color-btn-text);
+      border: 1.5px solid var(--color-btn-border);
+      border-radius: 8px;
+      padding: 0.7rem 2.2rem;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px var(--color-card-shadow);
+      margin-top: 0.5rem;
+      letter-spacing: 1px;
+    }
+    .contact-form .btn:hover {
+      background: var(--color-btn-hover);
+      color: var(--color-accent);
+      border: 1.5px solid var(--color-accent);
+      box-shadow: 0 2px 12px var(--color-card-shadow);
+    }
+    .contact-success {
+      display: none;
+      margin-top: 1.2rem;
+      color: var(--color-accent);
+      font-weight: bold;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+      animation: fadeInUp 0.7s;
+    }
+    .contact-form.shake {
+      animation: shake 0.4s;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px);}
+      to { opacity: 1; transform: none;}
+    }
+    @keyframes shake {
+      10%, 90% { transform: translateX(-2px);}
+      20%, 80% { transform: translateX(4px);}
+      30%, 50%, 70% { transform: translateX(-8px);}
+      40%, 60% { transform: translateX(8px);}
+      100% { transform: none;}
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Chrono Corp</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="technology.html">Technology</a>
+      <a href="investment.html">Kairos</a>
+      <a href="contact.html">Contact</a>
+      <a href="portal.html">Redeem</a>
+    </nav>
+  </header>
+
+  <section class="contact-card">
+    <h2>Contact</h2>
+    <p>If you are a scientist, investor, or simply curious, contact us.</p>
+    <form class="contact-form" id="contactForm" autocomplete="off">
+      <input type="text" placeholder="Your name" name="name" required>
+      <input type="email" placeholder="Your email" name="email" required>
+      <textarea rows="4" placeholder="Message" name="message" required></textarea>
+      <button type="submit" class="btn">Send</button>
+    </form>
+    <div class="contact-success" id="contactSuccess">Message sent! We will contact you soon.</div>
+  </section>
+
+  <button id="theme-toggle" aria-label="Toggle dark/light mode" class="theme-switch"></button>
+
+  <footer>
+    &copy; 2025 Chrono · All rights reserved
+    <br>
+    <small style="display:block;color:#888;font-size:0.75rem;margin-top:0.2rem;letter-spacing:0.1px;">
+      This website and its content are entirely fictional and intended for storytelling and entertainment purposes only. Nothing presented should be interpreted as financial advice or factual information.
+    </small>
+  </footer>
+
+  <script>
+
+    // Highlight the active link according to the URL
+    document.querySelectorAll('nav a').forEach(link => {
+      if (window.location.pathname.endsWith(link.getAttribute('href'))) {
+        link.classList.add('activo');
+      }
+      // Ripple effect on click
+      link.addEventListener('click', function(e) {
+        const ripple = document.createElement('span');
+        ripple.className = 'ripple';
+        this.appendChild(ripple);
+        const max = Math.max(this.offsetWidth, this.offsetHeight);
+        ripple.style.width = ripple.style.height = max + 'px';
+        ripple.style.left = (e.offsetX - max/2) + 'px';
+        ripple.style.top = (e.offsetY - max/2) + 'px';
+        setTimeout(() => ripple.remove(), 600);
+      });
+    });
+
+function renderThemeIcon(isLight) {
+  return `
+    <svg class="sun-icon" viewBox="0 0 36 36">
+      <circle class="sun-shape" cx="18" cy="18" r="10"/>
+      <line class="slash" x1="8" y1="28" x2="28" y2="8"/>
+    </svg>
+  `;
+}
+function setTheme(isLight) {
+  document.body.classList.toggle('light-mode', isLight);
+  document.body.classList.toggle('dark-mode', !isLight);
+  document.getElementById('theme-toggle').innerHTML = renderThemeIcon(isLight);
+}
+function getThemePref() {
+  if (localStorage.getItem('theme')) {
+    return localStorage.getItem('theme') === 'light';
+  }
+  return false;
+}
+document.addEventListener('DOMContentLoaded', function() {
+  const btn = document.getElementById('theme-toggle');
+  let isLight = getThemePref();
+  setTheme(isLight);
+
+  btn.addEventListener('click', function() {
+    const currentlyLight = document.body.classList.contains('light-mode');
+    setTheme(!currentlyLight);
+    localStorage.setItem('theme', !currentlyLight ? 'light' : 'dark');
+  });
+
+  // Contact form animation
+  const form = document.getElementById('contactForm');
+  const success = document.getElementById('contactSuccess');
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    // Simple validation animation
+    if (!form.checkValidity()) {
+      form.classList.add('shake');
+      setTimeout(() => form.classList.remove('shake'), 400);
+      return;
+    }
+    form.style.opacity = 0.5;
+    setTimeout(() => {
+      form.style.display = 'none';
+      success.style.display = 'block';
+    }, 700);
+  });
+});
+  </script>
+</body>
+</html>

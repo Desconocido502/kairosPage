@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chrono | Redeem</title>
+  <link rel="stylesheet" href="./styles/styles.css" />
+  <style>
+    section#canje {
+      background-color: #f0f4f8;
+      text-align: center;
+      padding: 4rem 2rem;
+      max-width: 420px;
+      margin: 100px auto 0 auto;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px #00ffe733;
+    }
+    section#canje h2 {
+      color: #111;
+      font-family: 'Orbitron', Arial, sans-serif;
+    }
+    #canjeForm input[type="text"] {
+      padding: 0.7rem 1rem;
+      border-radius: 8px;
+      border: 1px solid #00ffe7;
+      font-size: 1.1rem;
+      width: 70%;
+      max-width: 260px;
+      margin-bottom: 1.2rem;
+      outline: none;
+      background: #fff;
+      color: #232946;
+      transition: border 0.2s;
+    }
+    #canjeForm input[type="text"]:focus {
+      border: 2px solid #232946;
+    }
+    #canjeForm button {
+      padding: 0.7rem 2.2rem;
+      border-radius: 8px;
+      border: none;
+      background: var(--color-acento, #00ffe7);
+      color: #232946;
+      font-weight: bold;
+      font-family: 'Orbitron', Arial, sans-serif;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      margin-left: 0.5rem;
+    }
+    #canjeForm button:hover {
+      background: #232946;
+      color: #00ffe7;
+    }
+    #canjeMensaje {
+      margin-top: 2rem;
+      display: none;
+      font-size: 1.1rem;
+      color: #232946;
+      background: #e0ffe7;
+      border-radius: 8px;
+      padding: 1rem;
+      box-shadow: 0 2px 12px #00ffe733;
+    }
+    header, nav {
+      background: var(--color-header-bg);
+      color: var(--color-header-text);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    nav a {
+      color: var(--color-header-text);
+      transition: color 0.3s;
+    }
+
+    /* Theme switcher styles */
+    .theme-switch {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      margin: 0;
+      outline: none;
+      position: relative;
+      width: 40px;
+      height: 40px;
+    }
+
+    .sun-icon {
+      width: 100%;
+      height: 100%;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      transition: transform 0.3s;
+    }
+
+    /* Light mode styles */
+    body.light-mode {
+      background-color: #fff;
+      color: #111;
+    }
+
+    /* Dark mode styles */
+    body.dark-mode {
+      background-color: #111;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Chrono Corp</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="technology.html">Technology</a>
+      <a href="investment.html">$KRS</a>
+      <a href="contact.html">Contact</a>
+      <a href="portal.html">Redeem</a>
+    </nav>
+    <button id="theme-toggle" aria-label="Toggle dark/light mode" class="theme-switch"></button>
+  </header>
+
+  <section id="canje">
+    <h2>Redeem your Coupon</h2>
+    <form id="canjeForm" onsubmit="canjear(event)">
+      <input type="text" id="codigoCupon" placeholder="Enter your coupon code" autocomplete="off" required />
+      <button type="submit">Redeem</button>
+    </form>
+    <div id="canjeMensaje"></div>
+  </section>
+
+  <footer>
+    &copy; 2025 Chrono · All rights reserved
+    <br>
+    <small style="display:block;color:#888;font-size:0.75rem;margin-top:0.2rem;letter-spacing:0.1px;">
+      This website and its content are entirely fictional and intended for storytelling and entertainment purposes only. Nothing presented should be interpreted as financial advice or factual information.
+    </small>
+  </footer>
+
+  <script>
+
+    // Highlight the active link according to the URL
+    document.querySelectorAll('nav a').forEach(link => {
+      if (window.location.pathname.endsWith(link.getAttribute('href'))) {
+        link.classList.add('activo');
+      }
+      // Ripple effect on click
+      link.addEventListener('click', function(e) {
+        const ripple = document.createElement('span');
+        ripple.className = 'ripple';
+        this.appendChild(ripple);
+        const max = Math.max(this.offsetWidth, this.offsetHeight);
+        ripple.style.width = ripple.style.height = max + 'px';
+        ripple.style.left = (e.offsetX - max/2) + 'px';
+        ripple.style.top = (e.offsetY - max/2) + 'px';
+        setTimeout(() => ripple.remove(), 600);
+      });
+    });
+
+    function canjear(e) {
+      e.preventDefault();
+      const codigo = document.getElementById("codigoCupon").value.trim();
+      const mensaje = document.getElementById("canjeMensaje");
+      const body = document.body;
+
+      // Special code
+      if (codigo === "User_Insert_1930_???Proyect_Crono") {
+        mensaje.style.display = "block";
+        mensaje.style.background = "#232946";
+        mensaje.style.color = "#fff";
+        mensaje.innerHTML = `
+          <b>Restricted access detected...</b><br>
+          <button id="employeeBtn" style="margin-top:1.5rem;padding:0.7rem 2rem;font-size:1.1rem;font-family:'Orbitron',Arial,sans-serif;background:#00ffe7;color:#232946;border:none;border-radius:8px;cursor:pointer;">Employee?</button>
+        `;
+        // Aggressive corruption
+        startCorrupcion();
+        document.getElementById("employeeBtn").onclick = function() {
+          window.location.href = "login.html";
+        };
+        return;
+      }
+
+      // Example of valid coupons
+      const cuponesValidos = {
+        "chrono2025": "Valid coupon! You have received a 10% discount.",
+        "bienvenido": "Welcome! Your coupon gives you early access.",
+        "vipaccess": "VIP Access activated! Enjoy your benefits."
+      };
+      if (cuponesValidos[codigo.toLowerCase()]) {
+        mensaje.style.display = "block";
+        mensaje.style.background = "#e0ffe7";
+        mensaje.style.color = "#232946";
+        mensaje.textContent = cuponesValidos[codigo.toLowerCase()];
+      } else {
+        mensaje.style.display = "block";
+        mensaje.style.background = "#ffe0e0";
+        mensaje.style.color = "#b00020";
+        mensaje.textContent = "Invalid or already used coupon.";
+      }
+    }
+
+    // Aggressive page corruption
+    function startCorrupcion() {
+      // Custom glitch sound
+      let audio = document.createElement("audio");
+      audio.src = "glitch.mp3"; // Make sure glitch.mp3 is in the same folder as portal.html
+      audio.autoplay = true;
+      audio.volume = 0.5;
+      audio.style.display = "none";
+      document.body.appendChild(audio);
+
+      // Glitch background
+      document.body.style.transition = "none";
+      document.body.style.background = "#111";
+      let interval1 = setInterval(() => {
+        document.body.style.filter = `hue-rotate(${Math.random()*360}deg) blur(${Math.random()*2}px)`;
+        document.body.style.transform = `skew(${Math.random()*8-4}deg,${Math.random()*8-4}deg) scale(${1+Math.random()*0.04})`;
+      }, 60);
+
+      // Glitch text
+      let interval2 = setInterval(() => {
+        document.querySelectorAll("*").forEach(el => {
+          if (el.tagName !== "SCRIPT" && el.tagName !== "STYLE") {
+            el.style.letterSpacing = `${Math.random()*6-3}px`;
+            el.style.wordSpacing = `${Math.random()*10-5}px`;
+            el.style.textShadow = `${Math.random()*8-4}px ${Math.random()*8-4}px 2px #00ffe7, ${Math.random()*8-4}px ${Math.random()*8-4}px 2px #ff0055`;
+          }
+        });
+      }, 80);
+
+      // Glitch overlay
+      let overlay = document.createElement("div");
+      overlay.id = "glitchOverlay";
+      overlay.style.position = "fixed";
+      overlay.style.left = 0;
+      overlay.style.top = 0;
+      overlay.style.width = "100vw";
+      overlay.style.height = "100vh";
+      overlay.style.pointerEvents = "none";
+      overlay.style.zIndex = 9999;
+      document.body.appendChild(overlay);
+
+      let interval3 = setInterval(() => {
+        overlay.style.background = `repeating-linear-gradient(
+          ${Math.random()*360}deg,
+          rgba(0,255,231,${Math.random()*0.2+0.05}) 0px,
+          rgba(0,255,231,0) ${Math.random()*40+10}px
+        )`;
+        overlay.style.opacity = Math.random()*0.7+0.2;
+      }, 90);
+
+      // Stop glitch after 7 seconds
+      setTimeout(() => {
+        clearInterval(interval1);
+        clearInterval(interval2);
+        clearInterval(interval3);
+        document.body.style.filter = "";
+        document.body.style.transform = "";
+        document.body.style.background = "";
+        if (overlay) overlay.remove();
+        document.querySelectorAll("*").forEach(el => {
+          el.style.letterSpacing = "";
+          el.style.wordSpacing = "";
+          el.style.textShadow = "";
+        });
+        // Stop and remove sound
+        if (audio) {
+          audio.pause();
+          audio.remove();
+        }
+        // Hide Employee? button if exists and clear the message
+        const btn = document.getElementById("employeeBtn");
+        if (btn) btn.style.display = "none";
+        const mensaje = document.getElementById("canjeMensaje");
+        if (mensaje) mensaje.style.display = "none";
+      }, 7000);
+    }
+
+    function renderThemeIcon(isLight) {
+      return `
+        <svg class="sun-icon" viewBox="0 0 36 36">
+          <circle class="sun-shape" cx="18" cy="18" r="10"/>
+          <line class="slash" x1="8" y1="28" x2="28" y2="8"/>
+        </svg>
+      `;
+    }
+
+    function setTheme(isLight) {
+      document.body.classList.toggle('light-mode', isLight);
+      document.body.classList.toggle('dark-mode', !isLight);
+      document.getElementById('theme-toggle').innerHTML = renderThemeIcon(isLight);
+    }
+
+    function getThemePref() {
+      if (localStorage.getItem('theme')) {
+        return localStorage.getItem('theme') === 'light';
+      }
+      return false;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const btn = document.getElementById('theme-toggle');
+      let isLight = getThemePref();
+      setTheme(isLight);
+
+      btn.addEventListener('click', function() {
+        isLight = !document.body.classList.contains('light-mode');
+        setTheme(isLight);
+        localStorage.setItem('theme', isLight ? 'light' : 'dark');
+      });
+    });
+  </script>
+</body>
+</html>

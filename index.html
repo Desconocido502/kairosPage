@@ -1,0 +1,229 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chrono | Home</title>
+  <link rel="stylesheet" href="./styles/styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Chrono Corp</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="technology.html">Technology</a>
+      <a href="investment.html">$KRS</a>
+      <a href="contact.html">Contact</a>
+      <a href="portal.html">Redeem</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-bg slider-bg">
+      <img class="slider-img active" src="./img/1.png" alt="Banner 1" />
+      <img class="slider-img" src="./img/2.png" alt="Banner 2" />
+      <img class="slider-img" src="./img/3.png" alt="Banner 3" />
+      <img class="slider-img" src="./img/5.png" alt="Banner 4" />
+      <img class="slider-img" src="./img/6.png" alt="Banner 5" />
+    </div>
+    <div class="hero-content">
+      <h2>Welcome to Chrono Corp</h2>
+      <p>
+        Time Is Ours to Command.
+        For decades, Chrono Corp has been driven by a single vision: mastering time travel. From our earliest experiments to the creation of the Chrono Gate—our greatest achievement—we have pursued the impossible. Powered by $KRS, we are on the verge of rewriting history, reshaping the present, and redefining the future.
+        The past is no longer lost. The future is within reach. Join us—time waits for no one.
+      </p>
+      <p>
+        
+      </p>
+      <a href="investment.html" class="btn btn-hero">Invest now</a>
+    </div>
+  </section>
+
+    <!-- VIDEO PLACEHOLDER - Reemplazar el src por el video oficial cuando esté disponible -->
+    <section class="video-section">
+      <div class="video-container">
+        <iframe 
+          src="https://www.youtube.com/embed/xuCn8ux2gbs" 
+          title="Chrono Corp Presentation Video"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </section>
+
+
+  <section class="technology-imagenes">
+    <h2>Our technology</h2>
+    <div class="imagenes-grid">
+      <img src="./img/Chronovisor upadte.png" alt="Futuristic technology 1">
+      <img src="./img/echo.png" alt="Futuristic technology 2">
+      <img src="./img/gate.png" alt="Futuristic technology 3">
+      <img src="./img/tempus.png" alt="Futuristic technology 4">
+      <img src="./img/tele.png" alt="Futuristic technology 5">
+    </div>
+  </section>
+
+  <section class="noticias">
+    <h2>Latest News</h2>
+    <ul id="noticias-lista">
+      <!-- Dynamic news here -->
+    </ul>
+  </section>
+
+  <section class="testimonios">
+    <h2>Testimonials</h2>
+    <div id="testimonio-actual" class="testimonio">
+      <!-- Dynamic testimonial here -->
+    </div>
+  </section>
+
+  <section class="why-chrono">
+    <h2>Why Chrono?</h2>
+    <ul>
+      <li>Unprecedented technological innovation</li>
+      <li>Multidisciplinary team of experts</li>
+      <li>Unique opportunity to invest in the future</li>
+      <li>Commitment to ethics and temporal safety</li>
+    </ul>
+  </section>
+
+  <footer>
+    &copy; 2025 Chrono · All rights reserved
+    <br>
+    <small style="display:block;color:#888;font-size:0.75rem;margin-top:0.2rem;letter-spacing:0.1px;">
+      This website and its content are entirely fictional and intended for storytelling and entertainment purposes only. Nothing presented should be interpreted as financial advice or factual information.
+    </small>
+  </footer>
+
+  <button id="theme-toggle" aria-label="Toggle dark/light mode" class="theme-switch"></button>
+
+  <script>
+    // Dynamic news
+    const noticias = [
+      "Chrono receives record investment for its time machine prototype!",
+      "Our team presents advances at the international quantum physics conference.",
+      "The first Chrono temporal ethics report is published.",
+      "New laboratory inaugurated in Silicon Valley!",
+      "Chrono collaborates with leading universities in advanced technology.",
+      "The testing phase begins with selected volunteers.",
+      "Chrono launches its global investment platform.",
+      "International recognition for Chrono's innovation."
+    ];
+    function mostrarNoticias() {
+      const lista = document.getElementById('noticias-lista');
+      lista.innerHTML = '';
+      const seleccionadas = noticias.sort(() => 0.5 - Math.random()).slice(0, 3);
+      seleccionadas.forEach(noticia => {
+        const li = document.createElement('li');
+        li.textContent = noticia;
+        lista.appendChild(li);
+      });
+    }
+    mostrarNoticias();
+
+    // Dynamic testimonials
+    const testimonios = [
+      {
+        texto: "Investing in Chrono was the best decision of my life. The future is now!",
+        autor: "Cesar Montenegro, Investor"
+      },
+      {
+        texto: "The Chrono team is truly innovative and professional.",
+        autor: "Cornelius Wren, Scientist"
+      },
+      {
+        texto: "I'm excited to be part of a project that will change history.",
+        autor: "Felicity Thorne, Engineer"
+      }
+    ];
+    let testimonioIndex = 0;
+    function mostrarTestimonio() {
+      const testimonioDiv = document.getElementById('testimonio-actual');
+      const t = testimonios[testimonioIndex];
+      testimonioDiv.innerHTML = `<blockquote>"${t.texto}"</blockquote><p>- ${t.autor}</p>`;
+      testimonioIndex = (testimonioIndex + 1) % testimonios.length;
+    }
+    mostrarTestimonio();
+    setInterval(mostrarTestimonio, 4000);
+
+    // Automatic banner slider
+    const sliderImgs = document.querySelectorAll('.slider-bg .slider-img');
+    let sliderIndex = 0;
+    setInterval(() => {
+      sliderImgs[sliderIndex].classList.remove('active');
+      sliderIndex = (sliderIndex + 1) % sliderImgs.length;
+      sliderImgs[sliderIndex].classList.add('active');
+    }, 4000);
+
+    // Highlight the active link according to the URL
+    document.querySelectorAll('nav a').forEach(link => {
+      if (window.location.pathname.endsWith(link.getAttribute('href'))) {
+        link.classList.add('activo');
+      }
+      // Ripple effect on click
+      link.addEventListener('click', function(e) {
+        const ripple = document.createElement('span');
+        ripple.className = 'ripple';
+        this.appendChild(ripple);
+        const max = Math.max(this.offsetWidth, this.offsetHeight);
+        ripple.style.width = ripple.style.height = max + 'px';
+        ripple.style.left = (e.offsetX - max/2) + 'px';
+        ripple.style.top = (e.offsetY - max/2) + 'px';
+        setTimeout(() => ripple.remove(), 600);
+      });
+    });
+
+    function renderThemeIcon(isLight) {
+      // SVG: sun in a white circle, with a slash if light mode
+      return `
+        <svg class="sun-icon" viewBox="0 0 36 36">
+          <circle class="sun-shape" cx="18" cy="18" r="10"/>
+          <line class="slash" x1="8" y1="28" x2="28" y2="8"/>
+        </svg>
+      `;
+    }
+
+    function setTheme(isLight) {
+      document.body.classList.toggle('light-mode', isLight);
+      document.body.classList.toggle('dark-mode', !isLight);
+      document.getElementById('theme-toggle').innerHTML = renderThemeIcon(isLight);
+    }
+
+    function getThemePref() {
+      if (localStorage.getItem('theme')) {
+        return localStorage.getItem('theme') === 'light';
+      }
+      // Default: dark mode
+      return false;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const btn = document.getElementById('theme-toggle');
+      let isLight = getThemePref();
+      setTheme(isLight);
+
+      btn.addEventListener('click', function() {
+        const currentlyLight = document.body.classList.contains('light-mode');
+        setTheme(!currentlyLight);
+        localStorage.setItem('theme', !currentlyLight ? 'light' : 'dark');
+      });
+    });
+  </script>
+</body>
+</html>
+
+<style>
+header, nav {
+  background: var(--color-header-bg);
+  color: var(--color-header-text);
+  transition: background 0.3s, color 0.3s;
+}
+
+nav a {
+  color: var(--color-header-text);
+  transition: color 0.3s;
+}
+</style>

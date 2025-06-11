@@ -1,0 +1,1563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chrono | Kairos</title>
+  <link rel="stylesheet" href="./styles/styles.css" />
+  <style>
+    :root {
+      --color-bg: #f7f8fa;
+      --color-text: #232946;
+      --color-card: #fff;
+      --color-card-shadow: #23294622;
+      --color-accent: #00ffe7;
+      --color-btn-bg: #fff;           /* <-- blanco */
+      --color-btn-text: #232946;
+      --color-btn-border: #e0e0e0;
+      --color-btn-hover: #f0f0f0;
+      --color-header-bg: #fff;        /* <-- blanco */
+      --color-header-text: #232946;   /* <-- gris oscuro */
+      --color-crypto-bg: #fff;
+      --color-social-bg: #fff;        /* <-- blanco */
+      --color-highlight: #FFD700;
+    }
+    body.dark-mode {
+      --color-bg: #18192a;
+      --color-text: #e0e0e0;
+      --color-card: #232946;
+      --color-card-shadow: #00ffe755;
+      --color-accent: #00ffe7;
+      --color-btn-bg: #232946;
+      --color-btn-text: #e0e0e0;
+      --color-btn-border: #35374a;
+      --color-btn-hover: #35374a;
+      --color-header-bg: #232946;
+      --color-header-text: #e0e0e0;   /* <-- gris claro */
+      --color-crypto-bg: #232946;
+      --color-social-bg: #232946;     /* <-- gris oscuro */
+      --color-highlight: #FFD700;
+    }
+    body.light-mode {
+      --color-bg: #f7f8fa;
+      --color-text: #232946;
+      --color-card: #fff;
+      --color-card-shadow: #23294622;
+      --color-accent: #00ffe7;
+      --color-btn-bg: #fff;
+      --color-btn-text: #232946;
+      --color-btn-border: #e0e0e0;
+      --color-btn-hover: #f0f0f0;
+      --color-header-bg: #fff;
+      --color-header-text: #232946;
+      --color-crypto-bg: #fff;
+      --color-social-bg: #fff;
+      --color-highlight: #FFD700;
+    }
+    body {
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-family: 'Orbitron', Arial, sans-serif;
+      transition: background 0.3s, color 0.3s;
+    }
+    header, nav {
+      background: var(--color-header-bg);
+      color: var(--color-header-text);
+      transition: background 0.3s, color 0.3s;
+    }
+    nav a {
+      color: var(--color-header-text) !important;
+      transition: color 0.3s;
+    }
+    .promo-crypto,
+    .simulador-retorno,
+    .social-dynamic {
+      background: var(--color-card);
+      color: var(--color-text);
+      border-radius: 18px;
+      box-shadow: 0 4px 24px var(--color-card-shadow);
+      margin: 2.5rem auto 2rem auto;
+      max-width: 480px;
+      padding: 2.2rem 1.5rem 1.5rem 1.5rem;
+      text-align: center;
+      position: relative;
+      animation: fadeInUp 0.7s;
+    }
+    .promo-crypto h2,
+    .simulador-retorno h3 {
+      color: var(--color-accent);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+    }
+    .promo-crypto p {
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+    .crypto-key-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--color-crypto-bg);
+      color: var(--color-btn-text);
+      border-radius: 10px;
+      padding: 0.7rem 1rem;
+      font-size: 1.1rem;
+      font-weight: bold;
+      box-shadow: 0 2px 12px var(--color-card-shadow);
+      margin-bottom: 0.7rem;
+      gap: 0.7rem;
+      user-select: all;
+    }
+    .copy-btn,
+    .sim-btn,
+    .ruleta-spin,
+    .ruleta-copy {
+      background: var(--color-btn-bg);
+      color: var(--color-btn-text);
+      border: 1px solid var(--color-btn-border);
+      border-radius: 7px;
+      padding: 0.6rem 1.5rem;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s, border 0.2s;
+      box-shadow: 0 2px 8px var(--color-card-shadow);
+      margin-left: 0.5rem;
+    }
+    .copy-btn:hover,
+    .sim-btn:hover,
+    .ruleta-spin:hover,
+    .ruleta-copy:hover {
+      background: var(--color-btn-hover);
+      color: var(--color-accent);
+      border: 1px solid var(--color-accent);
+      box-shadow: 0 2px 12px var(--color-card-shadow);
+    }
+    .clave-tip {
+      color: var(--color-accent);
+      font-size: 0.95rem;
+      display: block;
+      margin-top: 0.3rem;
+    }
+    .simulador-retorno h3 {
+      color: var(--color-accent);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+      letter-spacing: 1px;
+    }
+    .simulador-retorno p {
+      color: var(--color-text);
+      margin-bottom: 1.2rem;
+      font-size: 1rem;
+    }
+    .sim-row {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+    .sim-row label {
+      margin-bottom: 0.3rem;
+      font-size: 1rem;
+      color: var(--color-text);
+    }
+    .sim-row input {
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 7px;
+      border: 1px solid var(--color-btn-border);
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-size: 1rem;
+      outline: none;
+      margin-bottom: 0.2rem;
+      transition: border 0.2s, background 0.2s, color 0.2s;
+    }
+    .sim-row input:focus {
+      border-color: var(--color-accent);
+    }
+    .sim-resultado {
+      margin-top: 1.2rem;
+      font-size: 1.15rem;
+      color: var(--color-accent);
+      font-weight: bold;
+      min-height: 2.2rem;
+    }
+    .social-dynamic {
+      background: var(--color-social-bg);
+      color: var(--color-text);
+    }
+    .social-dynamic h3 {
+      color: var(--color-text);
+      margin-bottom: 1.2rem;
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+    }
+    .social-btns {
+      display: flex;
+      justify-content: center;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+    }
+    .btn-social {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--color-btn-bg);
+      color: var(--color-btn-text);
+      border: 1px solid var(--color-btn-border);
+      border-radius: 8px;
+      padding: 0.6rem 1.1rem;
+      font-size: 1rem;
+      font-weight: 500;
+      text-decoration: none;
+      box-shadow: 0 2px 8px var(--color-card-shadow);
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s, border 0.2s;
+      cursor: pointer;
+      outline: none;
+    }
+    .btn-social:hover {
+      background: var(--color-btn-hover);
+      color: var(--color-highlight);
+      border: 1px solid var(--color-highlight);
+      box-shadow: 0 2px 12px var(--color-card-shadow);
+      transform: translateY(-2px) scale(1.04);
+    }
+    .btn-social svg { margin-right: 0.3rem; }
+    /* Ruleta */
+    #popupRuleta {
+      position: fixed;
+      z-index: 9999;
+      left: 0; top: 0; right: 0; bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ruleta-overlay {
+      position: absolute;
+      left: 0; top: 0; right: 0; bottom: 0;
+      background: rgba(30,40,60,0.65);
+      z-index: 1;
+    }
+    .ruleta-modal {
+      position: relative;
+      z-index: 2;
+      background: var(--color-card);
+      color: var(--color-text);
+      border-radius: 18px;
+      padding: 2.5rem 2rem 2rem 2rem;
+      box-shadow: 0 8px 32px var(--color-card-shadow);
+      text-align: center;
+      min-width: 340px;
+      max-width: 95vw;
+      animation: fadeInUp 0.5s;
+    }
+    .ruleta-close {
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+      background: none;
+      border: none;
+      font-size: 2rem;
+      color: var(--color-header-text);
+      cursor: pointer;
+      font-weight: bold;
+      transition: color 0.2s;
+      z-index: 3;
+    }
+    .ruleta-close:hover { color: var(--color-accent); }
+    .ruleta-grande {
+      position: relative;
+      margin: 1.5rem auto 1.2rem auto;
+      width: 400px; height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ruleta-pointer {
+      position: absolute;
+      left: 50%;
+      top: -18px;
+      transform: translateX(-50%);
+      font-size: 2.2rem;
+      color: var(--color-accent);
+      text-shadow: 0 2px 8px var(--color-card-shadow);
+      z-index: 2;
+      pointer-events: none;
+      user-select: none;
+    }
+    #codigoGanador {
+      color: var(--color-header-text) !important;
+      font-weight: bold;
+    }
+    .confeti {
+      position: fixed;
+      top: -20px;
+      border-radius: 50%;
+      z-index: 99999;
+      pointer-events: none;
+      animation: confeti-fall linear forwards;
+    }
+    @keyframes confeti-fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0.7;
+      }
+    }
+    @media (max-width: 500px) {
+      .ruleta-grande { width: 90vw; height: 90vw; }
+      #canvasRuleta { width: 90vw !important; height: 90vw !important; }
+    }
+   
+    /* Calculadora loading y advertencia: tus styles originales aquí */
+    .simulador-retorno.loading {
+      position: relative;
+      overflow: hidden;
+      pointer-events: none;
+      opacity: 0.85;
+      filter: contrast(1.3) brightness(1.1) blur(1.5px) saturate(1.3);
+      background: var(--color-card);
+    }
+    .simulador-retorno.loading::after {
+      content: "";
+      pointer-events: none;
+      position: absolute;
+      left: 0; top: 0; right: 0; bottom: 0;
+      z-index: 20;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.07) 0px,
+        rgba(255,255,255,0.07) 2px,
+        transparent 2px,
+        transparent 8px
+      );
+      animation: vhs-lines 0.18s linear infinite;
+    }
+    .simulador-retorno.loading::before {
+      content: "Synchronizing with the temporal continuum...";
+      position: absolute;
+      left: 0; right: 0; top: 50%; transform: translateY(-50%);
+      background: rgba(30,32,50,0.93);
+      color: var(--color-accent);
+      font-family: 'Orbitron', Arial, sans-serif;
+      font-size: 1.13rem;
+      letter-spacing: 1px;
+      text-align: center;
+      padding: 2.5rem 1rem 2.5rem 1rem;
+      z-index: 30;
+      border-radius: 18px;
+      box-shadow: 0 2px 24px var(--color-accent);
+      animation: vhs-glitch-text 1.2s infinite alternate;
+      text-shadow:
+        0 0 8px var(--color-accent),
+        2px 0 4px var(--color-highlight),
+        -2px 0 4px #ff00cc;
+    }
+    @keyframes vhs-lines {
+      0% { background-position-y: 0; }
+      100% { background-position-y: 8px; }
+    }
+    @keyframes vhs-glitch-text {
+      0% { filter: hue-rotate(0deg) blur(1px);}
+      20% { filter: hue-rotate(10deg) blur(2px);}
+      40% { filter: hue-rotate(-10deg) blur(1.5px);}
+      60% { filter: hue-rotate(20deg) blur(2.5px);}
+      80% { filter: hue-rotate(-20deg) blur(1.2px);}
+      100% { filter: hue-rotate(0deg) blur(1px);}
+    }
+    /* Advertencia corrupción */
+    .corrupt-warning {
+      position: fixed;
+      z-index: 99999;
+      top: 0; left: 0; right: 0; bottom: 0;
+      pointer-events: none;
+      background: repeating-linear-gradient(120deg, var(--color-highlight) 0 10px, #fff 10px 20px, var(--color-highlight) 20px 30px, var(--color-card) 30px 40px);
+      opacity: 0.92;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.1rem;
+      color: var(--color-card);
+      font-family: 'Segoe UI', Arial, sans-serif;
+      text-shadow: 0 2px 8px #fff, 0 0 20px var(--color-highlight);
+      letter-spacing: 1px;
+      flex-direction: column;
+      gap: 1.2rem;
+      animation: corrupt-bg-move 1.2s linear infinite;
+    }
+    @keyframes corrupt-bg-move {
+      0% { background-position: 0 0; }
+      100% { background-position: 120px 60px; }
+    }
+    .corrupt-glitch {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #b30000;
+      background: #fffbe6;
+      padding: 0.7rem 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 0 18px var(--color-highlight);
+      letter-spacing: 2px;
+      margin-bottom: 0.7rem;
+      border: 1.5px solid var(--color-highlight);
+    }
+
+    body {
+      background: var(--color-bg);
+      color: var(--color-text);
+    }
+
+    .promo-crypto,
+    .simulador-retorno,
+    .social-dynamic {
+      background: var(--color-card);
+      color: var(--color-text);
+      border-radius: 18px;
+      box-shadow: 0 4px 24px var(--color-card-shadow);
+    }
+
+    .promo-crypto h2,
+    .simulador-retorno h3 {
+      color: var(--color-accent);
+    }
+
+    .promo-crypto .crypto-key-box {
+      background: var(--color-crypto-bg);
+      color: var(--color-btn-text);
+    }
+
+    .copy-btn,
+    .sim-btn,
+    .ruleta-spin,
+    .ruleta-copy {
+      background: var(--color-btn-bg);
+      color: var(--color-btn-text);
+      border: 1px solid var(--color-btn-border);
+    }
+
+    .copy-btn:hover,
+    .sim-btn:hover,
+    .ruleta-spin:hover,
+    .ruleta-copy:hover {
+      background: var(--color-btn-hover);
+      color: var(--color-accent);
+      border: 1px solid var(--color-accent);
+    }
+
+    .social-dynamic {
+      background: var(--color-social-bg);
+    }
+
+    .btn-social {
+      background: var(--color-btn-bg);
+      color: var(--color-btn-text);
+      border: 1px solid var(--color-btn-border);
+    }
+
+    .btn-social:hover {
+      background: var(--color-btn-hover);
+      color: var(--color-highlight);
+      border: 1px solid var(--color-highlight);
+    }
+
+    header, nav {
+      background: var(--color-header-bg);
+      color: var(--color-header-text);
+    }
+
+    nav a {
+      color: var(--color-header-text) !important;
+      transition: color 0.3s;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Chrono Corp</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="technology.html">Technology</a>
+      <a href="investment.html">$KRS</a>
+      <a href="contact.html">Contact</a>
+      <a href="portal.html">Redeem</a>
+    </nav>
+    <button id="theme-toggle" aria-label="Toggle dark/light mode" class="theme-switch"></button>
+  </header>
+  <main>
+    <!-- Cifra ∆-13 Popup Window -->
+    <div id="popupCifra13">
+      <div class="cifra-modal">
+        <button onclick="document.getElementById('popupCifra13').style.display='none'" class="close-btn">×</button>
+        <h2>Cifra ∆-13</h2>
+        <div id="cifraTextoDinamico" style="font-size:1.08rem;line-height:1.6;text-align:left;min-height:180px;white-space:pre-line;"></div>
+      </div>
+    </div>
+
+    <style>
+      .btn-cifra-animada {
+        position: relative;
+        background: #232946;
+        color: #FFD700;
+        border: none;
+        border-radius: 12px;
+        font-family: 'Orbitron', Arial, sans-serif;
+        font-size: 1.15rem;
+        font-weight: bold;
+        padding: 0.8rem 2.2rem;
+        box-shadow: 0 2px 12px #FFD70033;
+        letter-spacing: 1.5px;
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+        overflow: hidden;
+        z-index: 1;
+      }
+      .btn-cifra-lines {
+        pointer-events: none;
+        position: absolute;
+        inset: -6px;
+        border-radius: 16px;
+        z-index: 2;
+        background: conic-gradient(
+          #FFD700 0deg 40deg,
+          transparent 40deg 120deg,
+          #00ffe7 120deg 160deg,
+          transparent 160deg 240deg,
+          #FFD700 240deg 280deg,
+          transparent 280deg 360deg
+        );
+        animation: btn-cifra-spin 2.5s linear infinite;
+        opacity: 0.7;
+      }
+      @keyframes btn-cifra-spin {
+        100% { transform: rotate(360deg);}
+      }
+      .btn-cifra-animada:active {
+        background: var(--color-card);
+        color: var(--color-text);
+      }
+
+      /* Animación de la calculadora: efecto "recibiendo información del futuro" */
+      .simulador-retorno.loading {
+        position: relative;
+        overflow: hidden;
+        pointer-events: none;
+        opacity: 0.85;
+        filter: contrast(1.3) brightness(1.1) blur(1.5px) saturate(1.3);
+        background: var(--color-card);
+      }
+      .simulador-retorno.loading::after {
+        content: "";
+        pointer-events: none;
+        position: absolute;
+        left: 0; top: 0; right: 0; bottom: 0;
+        z-index: 20;
+        background: repeating-linear-gradient(
+          to bottom,
+          rgba(255,255,255,0.07) 0px,
+          rgba(255,255,255,0.07) 2px,
+          transparent 2px,
+          transparent 8px
+        );
+        animation: vhs-lines 0.18s linear infinite;
+      }
+      .simulador-retorno.loading::before {
+        content: "Sincronizando con el continuo temporal...";
+        position: absolute;
+        left: 0; right: 0; top: 50%; transform: translateY(-50%);
+        background: rgba(30,32,50,0.93);
+        color: var(--color-accent);
+        font-family: 'Orbitron', Arial, sans-serif;
+        font-size: 1.13rem;
+        letter-spacing: 1px;
+        text-align: center;
+        padding: 2.5rem 1rem 2.5rem 1rem;
+        z-index: 30;
+        border-radius: 18px;
+        box-shadow: 0 2px 24px var(--color-accent);
+        animation: vhs-glitch-text 1.2s infinite alternate;
+        text-shadow:
+          0 0 8px var(--color-accent),
+          2px 0 4px var(--color-highlight),
+          -2px 0 4px #ff00cc;
+      }
+      @keyframes vhs-lines {
+        0% { background-position-y: 0; }
+        100% { background-position-y: 8px; }
+      }
+      @keyframes vhs-glitch-text {
+        0% { filter: hue-rotate(0deg) blur(1px);}
+        20% { filter: hue-rotate(10deg) blur(2px);}
+        40% { filter: hue-rotate(-10deg) blur(1.5px);}
+        60% { filter: hue-rotate(20deg) blur(2.5px);}
+        80% { filter: hue-rotate(-20deg) blur(1.2px);}
+        100% { filter: hue-rotate(0deg) blur(1px);}
+      }
+    </style>
+
+    <script>
+
+      // Highlight the active link according to the URL
+      document.querySelectorAll('nav a').forEach(link => {
+        if (window.location.pathname.endsWith(link.getAttribute('href'))) {
+          link.classList.add('activo');
+        }
+        // Ripple effect on click
+        link.addEventListener('click', function(e) {
+          const ripple = document.createElement('span');
+          ripple.className = 'ripple';
+          this.appendChild(ripple);
+          const max = Math.max(this.offsetWidth, this.offsetHeight);
+          ripple.style.width = ripple.style.height = max + 'px';
+          ripple.style.left = (e.offsetX - max/2) + 'px';
+          ripple.style.top = (e.offsetY - max/2) + 'px';
+          setTimeout(() => ripple.remove(), 600);
+        });
+      });
+
+      // Text split into sentences for typewriter effect
+      const parrafosCifra = [
+        "One of our first experimental achievements was the development of Cifra ∆-13, an encrypted transmission protocol designed to test the viability of temporal communication.\n",
+        "In 2010, we sent an encrypted sequence to a projected date in 2045.\n",
+        "For exactly 9 years, 17 days, and 4 minutes, we received no response.\n",
+        "Until one early morning, without prior warning, a second packet appeared on our servers.\n",
+        "It contained a key never generated by our systems, using an algorithm that —to this day— no programming language recognizes as possible.\n",
+        "“Cifra ∆-13 showed us that asynchronous communication between timelines is not only viable… it is inevitable.”\n",
+        "Since then, every token issued on our network includes a resonant digital signature, vibrating at frequencies not yet discovered by conventional physics.\n",
+        "Today, you can use our Temporal Calculator to simulate sending data through the continuum and get an estimate of the time required for a possible future response."
+      ];
+
+      function mecanografiarTexto(element, textos, velocidad = 22, salto = 600) {
+        element.innerHTML = "";
+        let pIndex = 0;
+        let cIndex = 0;
+        let current = "";
+        function escribir() {
+          if (pIndex >= textos.length) return;
+          current += textos[pIndex][cIndex];
+          element.innerHTML = current + '<span style="opacity:0.4;">|</span>';
+          cIndex++;
+          if (cIndex < textos[pIndex].length) {
+            setTimeout(escribir, textos[pIndex][cIndex-1] === "\n" ? salto : velocidad);
+          } else {
+            current += "\n";
+            pIndex++;
+            cIndex = 0;
+            setTimeout(escribir, salto);
+          }
+        }
+        escribir();
+      }
+
+      // Animación de la calculadora al calcular (30 segundos)
+      function calcularRetorno() {
+        const monto = parseFloat(document.getElementById('montoInvertir').value);
+        const anioVenta = parseInt(document.getElementById('anioVenta').value, 10);
+        const precioActual = 0.10; // Fijo
+        const precioFuturo = 10.00; // Fijo para 4025
+        const anioActual = new Date().getFullYear();
+        const maxAnio = 4025;
+
+        if (isNaN(monto) || monto <= 0 || isNaN(anioVenta) || anioVenta < anioActual || anioVenta > maxAnio) {
+          document.getElementById('resultadoSimulador').textContent = "Please enter valid values.";
+          return false;
+        }
+
+        // Si el monto es exactamente 2045, activar advertencia/corrupción
+        if (monto === 4025) {
+          mostrarAdvertenciaFuturo();
+        }
+
+        // Cálculo inmediato, sin animación ni loading
+        let precioEstimado = precioActual;
+        if (anioVenta === maxAnio) {
+          precioEstimado = precioFuturo;
+        } else {
+          const progreso = (anioVenta - anioActual) / (maxAnio - anioActual);
+          precioEstimado = precioActual + (precioFuturo - precioActual) * progreso;
+        }
+
+        const kairosComprados = monto / precioActual;
+        const valorFuturo = kairosComprados * precioEstimado;
+        const ganancia = valorFuturo - monto;
+        const porcentaje = ((valorFuturo / monto) * 100 - 100).toFixed(2);
+        const anos = anioVenta - anioActual;
+
+        let resultadoTexto =
+          `In ${anos} year${anos === 1 ? '' : 's'} your currency will be worth:<br>
+          <span style="color:#FFD700;font-size:1.3em;">$${valorFuturo.toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2})}</span><br>
+          Estimated profit: <span style="color:#00ffe7;">$${ganancia.toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2})}</span> (${porcentaje}% return)`;
+
+        document.getElementById('resultadoSimulador').innerHTML = resultadoTexto;
+
+        return false; // Evita recargar la página
+      }
+
+      function mostrarAdvertenciaFuturo() {
+        if (document.getElementById('corruptWarning')) return;
+        const warning = document.createElement('div');
+        warning.id = 'corruptWarning';
+        warning.className = 'corrupt-warning';
+        warning.innerHTML = `
+          <div class="corrupt-glitch" id="glitchMsg">ADVERTENCIA DE INTEGRIDAD TEMPORAL</div>
+          <div id="glitchSubMsg">Se ha detectado un intento de consulta sobre información futura sensible.</div>
+          <div id="morseCodes" style="margin-top:1.2rem;display:flex;flex-direction:column;gap:0.5rem;"></div>
+        `;
+        document.body.appendChild(warning);
+
+        // Códigos morse dispersos (sin etiquetas)
+        const morseCodesArr = [
+          "−·− ·− ·· ·−· --- ···", // KAIROS
+          "···· ··- -- ·- -· .. -.. ·- -..", // HUMANIDAD
+          "·--. · ·-·· .. --. .-. ---" // PELIGRO
+        ];
+
+        // Mensajes intensos y formales
+        const mensajes = [
+          "ESTA MONEDA TE HARA PERDER TU HUMANIDAD.",
+          "KAIROS SE APROPIARÁ DE TI.",
+          "Advertencia: Consultar cifras exactas del futuro puede afectar la integridad temporal.",
+          "Por motivos de seguridad, la visualización de datos futuros está limitada.",
+          "La predicción de eventos futuros está sujeta a incertidumbre significativa.",
+          "ESTA MONEDA TE HARA PERDER TU HUMANIDAD.",
+          "KAIROS SE APROPIARÁ DE TI."
+        ];
+
+        let idx = 0;
+        const glitchSubMsg = document.getElementById('glitchSubMsg');
+        const morseCodesDiv = document.getElementById('morseCodes');
+
+        // Mostrar todos los códigos morse al inicio, dispersos
+        morseCodesArr.forEach((code, i) => {
+          const morseDiv = document.createElement('div');
+          morseDiv.id = `morseCode${i}`;
+          morseDiv.style.fontSize = "1.1rem";
+          morseDiv.style.color = "#b30000";
+          morseDiv.style.letterSpacing = "3px";
+          morseDiv.style.fontFamily = "monospace";
+          morseDiv.textContent = code;
+          morseCodesDiv.appendChild(morseDiv);
+        });
+
+        // Animar el cambio de mensajes y resaltar el morse correspondiente
+        let morseIdx = 0;
+        const interval = setInterval(() => {
+          glitchSubMsg.textContent = mensajes[idx % mensajes.length];
+          // Resalta el morse correspondiente
+          morseCodesArr.forEach((_, i) => {
+            const morseDiv = document.getElementById(`morseCode${i}`);
+            morseDiv.style.background = (i === morseIdx % morseCodesArr.length) ? "#fffbe6" : "none";
+            morseDiv.style.fontWeight = (i === morseIdx % morseCodesArr.length) ? "bold" : "normal";
+          });
+          idx++;
+          morseIdx++;
+        }, 900);
+
+        // Glitch visual más sutil
+        document.body.style.filter = "contrast(1.5) hue-rotate(10deg) blur(1.5px)";
+        document.body.style.animation = "corrupt-bg-move 1.2s linear infinite";
+
+        // Parpadeo de título más formal
+        let originalTitle = document.title;
+        let titleInterval = setInterval(() => {
+          document.title = document.title.startsWith("ADVERTENCIA") ? originalTitle : "ADVERTENCIA DE INTEGRIDAD TEMPORAL";
+        }, 700);
+
+        // Quitar todo después de 5 segundos
+        setTimeout(() => {
+          warning.remove();
+          document.body.style.filter = "";
+          document.body.style.animation = "";
+          clearInterval(interval);
+          clearInterval(titleInterval);
+          document.title = originalTitle;
+        }, 5000);
+      }
+
+      // Códigos simulados para la consola animada
+      const codigosAnimados = [
+        "[TX] > 01101011 01100001 01101001 01110010 01101111 01110011",
+        "[TX] > 7A 3F 1C 9B 0A 4E 13 88 2D",
+        "[RX] < 01001011 01000001 01001001 01010010 01001111 01010011",
+        "[TX] > 0xA1B2C3D4E5F6G7H8I9J0",
+        "[RX] < 4B 41 52 4F 53",
+        "[TX] > 11010011 10101001 11100010",
+        "[RX] < 01101011 01100001 01101001 01110010 01101111 01110011",
+        "[TX] > --- .---- .---- .----",
+        "[RX] < --.-- .- .. .-. --- ...",
+        "[TX] > 01001011 01000001 01001001 01010010 01001111 01010011",
+        "[RX] < 7A 3F 1C 9B 0A 4E 13 88 2D",
+        "[TX] > 0xA1B2C3D4E5F6G7H8I9J0",
+        "[RX] < 11010011 10101001 11100010",
+        "[TX] > 4B 41 52 4F 53"
+      ];
+
+      let animacionCodigosInterval = null;
+
+      function animarConsolaCodigos() {
+        const consola = document.getElementById('consoleCodigos');
+        if (!consola) return;
+        consola.innerHTML = "";
+        let idx = 0;
+        clearInterval(animacionCodigosInterval);
+        animacionCodigosInterval = setInterval(() => {
+          if (idx < codigosAnimados.length) {
+            const span = document.createElement('span');
+            span.textContent = codigosAnimados[idx];
+            consola.appendChild(span);
+            consola.scrollTop = consola.scrollHeight;
+            idx++;
+          } else {
+            // Loop o detener, aquí lo dejamos en loop
+            idx = 0;
+            consola.innerHTML = "";
+          }
+        }, 1800);
+      }
+
+      function detenerConsolaCodigos() {
+        clearInterval(animacionCodigosInterval);
+        const consola = document.getElementById('consoleCodigos');
+        if (consola) consola.innerHTML = "";
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const btnCifra = document.getElementById('btnCifra13');
+        if (btnCifra) {
+          btnCifra.onclick = function() {
+            document.getElementById('popupCifra13').style.display = 'flex';
+            const el = document.getElementById('cifraTextoDinamico');
+            mecanografiarTexto(el, parrafosCifra);
+          };
+        }
+      });
+
+    </script>
+
+    <section class="promo-crypto">
+      <h2>Invest in Kairos, Chrono's cryptocurrency!</h2>
+      <p>
+        Kairos is the new digital currency powering our ecosystem.<br>
+        Be part of the future and enjoy exclusive benefits.
+      </p>
+      <div class="crypto-key-box">
+        <span id="cryptoClave">Coming Soon!!</span>
+        <button class="copy-btn" onclick="copiarClaveCripto()">Copy</button>
+      </div>
+    </section>
+
+    <!-- <section style="margin:2.5rem auto 1.2rem auto;max-width:480px;text-align:center;position:relative;">
+      <button id="btnCifra13" class="btn-cifra-animada">
+        How to use the tempus <span style="font-size:1.1em;vertical-align:middle;"></span>
+      </button>
+    </section>
+
+    <section class="simulador-retorno">
+      <h3>Temporal Return Simulator</h3>
+      <form id="formSimulador" onsubmit="return calcularRetorno();">
+        <div class="sim-row">
+          <label for="montoInvertir">Amount to invest (USD):</label>
+          <input type="number" id="montoInvertir" min="1" step="any" required>
+        </div>
+        <div class="sim-row">
+          <label for="anioVenta">Year of sale (max. 4025):</label>
+          <input type="number" id="anioVenta" min="2024" max="4025" value="4025" required>
+        </div>
+        <button type="submit" class="sim-btn">Calculate</button>
+      </form>
+      <div id="resultadoSimulador" class="sim-resultado"></div>
+      <span class="k-animada">K</span>
+      <div class="console-codigos" id="consoleCodigos"></div>
+    </section> -->
+
+    <section class="social-dynamic">
+      <h3>Be part of our most ambitious project</h3>
+      <div class="social-btns">
+        <a href="https://www.tiktok.com/@chrono.collapse4025?_t=ZP-8x0sa4BzPEF&_r=1" target="_blank" class="btn-social tiktok" title="TikTok">
+          <!-- TikTok SVG -->
+          <svg width="22" height="22" viewBox="0 0 48 48" fill="none" style="vertical-align:middle;">
+            <path d="M33 6h-6v24.5a4.5 4.5 0 1 1-4.5-4.5c.5 0 1 .1 1.5.3V22c-.5-.1-1-.1-1.5-.1a9 9 0 1 0 9 9V19.7c1.3 1.1 3 1.8 4.8 1.8H39v-6h-1.2c-2.5 0-4.5-2-4.5-4.5V6z" fill="#fff"/>
+          </svg>
+          TikTok
+        </a>
+        <a href="https://t.me/KRScult" target="_blank" class="btn-social telegram" title="Telegram">
+          <!-- Telegram SVG -->
+          <svg width="22" height="22" viewBox="0 0 48 48" fill="none" style="vertical-align:middle;">
+            <path d="M44 4L4 20.5l10.5 4L38 10.5 18.5 28.5l-1.5 7 6-5.5 7.5 5.5 7-32z" fill="#229ED9"/>
+            <path d="M44 4L4 20.5l10.5 4L38 10.5 18.5 28.5l-1.5 7 6-5.5 7.5 5.5 7-32z" fill="#fff" fill-opacity="0.7"/>
+          </svg>
+          Telegram
+        </a>
+        <a href="https://x.com/chrono_corp?s=21" target="_blank" class="btn-social x" title="X">
+          <!-- X SVG -->
+          <svg width="22" height="22" viewBox="0 0 48 48" fill="none" style="vertical-align:middle;">
+            <path d="M34.6 6H41l-14.6 16.7L41.9 42H30.2l-9.3-11.3L9.7 42H3l15.6-17.8L6.1 6h12.1l8.4 10.2L34.6 6zm-2.1 31.2h3.2L13.6 9.6h-3.4l21.9 27.6z" fill="#fff"/>
+          </svg>
+          X
+        </a>
+      </div>
+    </section>
+
+    <div id="popupRuleta" style="display:none;">
+      <div class="ruleta-overlay"></div>
+      <div class="ruleta-modal">
+        <button class="ruleta-close" onclick="cerrarRuleta()">×</button>
+        <h3 style="color:#111;">Spin the wheel and win a coupon!</h3>
+        <div class="ruleta-grande">
+          <canvas id="canvasRuleta" width="400" height="400"></canvas>
+          <div class="ruleta-pointer">▼</div>
+        </div>
+        <button class="ruleta-spin" onclick="girarRuleta()">Spin</button>
+        <button class="ruleta-copy" onclick="copiarCodigo()" disabled>Copy code</button>
+        <div id="codigoGanador" style="margin-top:1.2rem;font-size:1.2rem;font-family:'Orbitron',Arial,sans-serif;"></div>
+      </div>
+    </div>
+
+    <style>
+      .promo-crypto {
+        margin: 2.5rem auto 2rem auto;
+        max-width: 480px;
+        background: var(--color-card);
+        color: var(--color-text);
+        border-radius: 18px;
+        box-shadow: 0 4px 24px #00ffe755;
+        padding: 2.2rem 1.5rem 1.5rem 1.5rem;
+        text-align: center;
+        font-family: 'Orbitron', Arial, sans-serif;
+        position: relative;
+      }
+      .promo-crypto h2 {
+        color: #00ffe7;
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+        letter-spacing: 1px;
+      }
+      .promo-crypto p {
+        margin-bottom: 1.5rem;
+        font-size: 1.1rem;
+      }
+      .crypto-key-box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #fff;
+        color: #232946;
+        border-radius: 10px;
+        padding: 0.7rem 1rem;
+        font-size: 1.1rem;
+        font-weight: bold;
+        box-shadow: 0 2px 12px #00ffe733;
+        margin-bottom: 0.7rem;
+        gap: 0.7rem;
+        user-select: all;
+      }
+      .copy-btn {
+        background: linear-gradient(90deg, #00ffe7 60%, #FFD700 100%);
+        color: #232946;
+        border: none;
+        border-radius: 7px;
+        padding: 0.4rem 1.1rem;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+        box-shadow: 0 2px 8px #FFD70055;
+        margin-left: 0.5rem;
+      }
+      .copy-btn:hover {
+        background: #232946;
+        color: #00ffe7;
+        box-shadow: 0 2px 12px #00ffe799;
+      }
+      .clave-tip {
+        color: #e0ffe7;
+        font-size: 0.95rem;
+        display: block;
+        margin-top: 0.3rem;
+      }
+      #popupRuleta {
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .ruleta-overlay {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(30,40,60,0.65);
+        z-index: 1;
+      }
+      .ruleta-modal {
+        position: relative;
+        z-index: 2;
+        background: #fff;
+        border-radius: 18px;
+        padding: 2.5rem 2rem 2rem 2rem;
+        box-shadow: 0 8px 32px #00ffe799;
+        text-align: center;
+        min-width: 340px;
+        max-width: 95vw;
+        animation: fadeInUp 0.5s;
+      }
+      .ruleta-close {
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+        background: none;
+        border: none;
+        font-size: 2rem;
+        color: #232946;
+        cursor: pointer;
+        font-weight: bold;
+        transition: color 0.2s;
+        z-index: 3;
+      }
+      .ruleta-close:hover { color: #00ffe7; }
+      .ruleta-grande {
+        position: relative;
+        margin: 1.5rem auto 1.2rem auto;
+        width: 400px; height: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .ruleta-pointer {
+        position: absolute;
+        left: 50%;
+        top: -18px;
+        transform: translateX(-50%);
+        font-size: 2.2rem;
+        color: #00ffe7;
+        text-shadow: 0 2px 8px #23294655;
+        z-index: 2;
+        pointer-events: none;
+        user-select: none;
+      }
+      .ruleta-spin, .ruleta-copy {
+        margin: 0.5rem 0.5rem 0 0.5rem;
+        padding: 0.7rem 1.5rem;
+        border-radius: 8px;
+        border: none;
+        background: var(--color-acento, #00ffe7);
+        color: #232946;
+        font-weight: bold;
+        font-family: 'Orbitron', Arial, sans-serif;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s;
+      }
+      .ruleta-spin:hover, .ruleta-copy:hover {
+        background: #232946;
+        color: #00ffe7;
+      }
+      #codigoGanador {
+        color: #111 !important;
+        font-weight: bold;
+      }
+      .confeti {
+        position: fixed;
+        top: -20px;
+        border-radius: 50%;
+        z-index: 99999;
+        pointer-events: none;
+        animation: confeti-fall linear forwards;
+      }
+      @keyframes confeti-fall {
+        to {
+          transform: translateY(110vh) rotate(360deg);
+          opacity: 0.7;
+        }
+      }
+      @media (max-width: 500px) {
+        .ruleta-grande { width: 90vw; height: 90vw; }
+        #canvasRuleta { width: 90vw !important; height: 90vw !important; }
+      }
+      .simulador-retorno {
+        margin: 2.5rem auto 2rem auto;
+        max-width: 480px;
+        background: #232946;
+        color: #fff;
+        border-radius: 18px;
+        box-shadow: 0 4px 24px #23294633;
+        padding: 2rem 1.5rem 1.5rem 1.5rem;
+        text-align: center;
+        font-family: 'Orbitron', Arial, sans-serif;
+        position: relative;
+        animation: fadeInUp 0.7s;
+      }
+      .simulador-retorno h3 {
+        color: #FFD700;
+        margin-bottom: 1rem;
+        font-size: 1.3rem;
+        letter-spacing: 1px;
+      }
+      .simulador-retorno p {
+        color: #bdbdbd;
+        margin-bottom: 1.2rem;
+        font-size: 1rem;
+      }
+      .sim-row {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+      }
+      .sim-row label {
+        margin-bottom: 0.3rem;
+        font-size: 1rem;
+        color: #e0e0e0;
+      }
+      .sim-row input {
+        width: 100%;
+        padding: 0.5rem;
+        border-radius: 7px;
+        border: 1px solid #35374a;
+        background: #18192a;
+        color: #fff;
+        font-size: 1rem;
+        outline: none;
+        margin-bottom: 0.2rem;
+      }
+      .sim-row input:focus {
+        border-color: #FFD700;
+      }
+      .sim-btn {
+        background: #18192a;
+        color: #FFD700;
+        border: 1px solid #FFD700;
+        border-radius: 7px;
+        padding: 0.6rem 1.5rem;
+        font-size: 1.1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+        box-shadow: 0 2px 8px #FFD70022;
+        margin-top: 0.5rem;
+      }
+      .sim-btn:hover {
+        background: #FFD700;
+        color: #232946;
+        box-shadow: 0 2px 12px #FFD70055;
+      }
+      .sim-resultado {
+        margin-top: 1.2rem;
+        font-size: 1.15rem;
+        color: #00ffe7;
+        font-weight: bold;
+        min-height: 2.2rem;
+      }
+      .social-dynamic {
+        margin: 2.5rem auto 2rem auto;
+        max-width: 480px;
+        background: #1a1b23;
+        color: #fff;
+        border-radius: 18px;
+        box-shadow: 0 4px 24px #23294633;
+        padding: 2rem 1.5rem 1.5rem 1.5rem;
+        text-align: center;
+        font-family: 'Orbitron', Arial, sans-serif;
+        position: relative;
+        animation: fadeInUp 0.7s;
+      }
+      .social-dynamic h3 {
+        color: #bdbdbd;
+        margin-bottom: 1.2rem;
+        font-size: 1.2rem;
+        letter-spacing: 1px;
+      }
+      .social-btns {
+        display: flex;
+        justify-content: center;
+        gap: 0.7rem;
+        flex-wrap: wrap;
+      }
+      .btn-social {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: #232946;
+        color: #e0e0e0;
+        border: 1px solid #35374a;
+        border-radius: 8px;
+        padding: 0.6rem 1.1rem;
+        font-size: 1rem;
+        font-weight: 500;
+        text-decoration: none;
+        box-shadow: 0 2px 8px #23294622;
+        transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s, border 0.2s;
+        cursor: pointer;
+        outline: none;
+      }
+      .btn-social:hover {
+        background: #18192a;
+        color: #FFD700;
+        border: 1px solid #FFD700;
+        box-shadow: 0 2px 12px #FFD70033;
+        transform: translateY(-2px) scale(1.04);
+      }
+      .btn-social svg { margin-right: 0.3rem; }
+      .corrupt-warning {
+        position: fixed;
+        z-index: 99999;
+        top: 0; left: 0; right: 0; bottom: 0;
+        pointer-events: none;
+        background: repeating-linear-gradient(120deg, var(--color-highlight) 0 10px, #fff 10px 20px, var(--color-highlight) 20px 30px, var(--color-card) 30px 40px);
+        opacity: 0.92;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.1rem;
+        color: var(--color-card);
+        font-family: 'Segoe UI', Arial, sans-serif;
+        text-shadow: 0 2px 8px #fff, 0 0 20px var(--color-highlight);
+        letter-spacing: 1px;
+        flex-direction: column;
+        gap: 1.2rem;
+        animation: corrupt-bg-move 1.2s linear infinite;
+      }
+      @keyframes corrupt-bg-move {
+        0% { background-position: 0 0; }
+        100% { background-position: 120px 60px; }
+      }
+      .corrupt-glitch {
+        font-size: 1.3rem;
+        font-weight: bold;
+        color: #b30000;
+        background: #fffbe6;
+        padding: 0.7rem 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 0 18px var(--color-highlight);
+        letter-spacing: 2px;
+        margin-bottom: 0.7rem;
+        border: 1.5px solid var(--color-highlight);
+      }
+
+      body {
+        background: var(--color-bg);
+        color: var(--color-text);
+      }
+
+      .promo-crypto,
+      .simulador-retorno,
+      .social-dynamic {
+        background: var(--color-card);
+        color: var(--color-text);
+        border-radius: 18px;
+        box-shadow: 0 4px 24px var(--color-card-shadow);
+      }
+
+      .promo-crypto h2,
+      .simulador-retorno h3 {
+        color: var(--color-accent);
+      }
+
+      .promo-crypto .crypto-key-box {
+        background: var(--color-crypto-bg);
+        color: var(--color-btn-text);
+      }
+
+      .copy-btn,
+      .sim-btn,
+      .ruleta-spin,
+      .ruleta-copy {
+        background: var(--color-btn-bg);
+        color: var(--color-btn-text);
+        border: 1px solid var(--color-btn-border);
+      }
+
+      .copy-btn:hover,
+      .sim-btn:hover,
+      .ruleta-spin:hover,
+      .ruleta-copy:hover {
+        background: var(--color-btn-hover);
+        color: var(--color-accent);
+        border: 1px solid var(--color-accent);
+      }
+
+      .social-dynamic {
+        background: var(--color-social-bg);
+      }
+
+      .btn-social {
+        background: var(--color-btn-bg);
+        color: var(--color-btn-text);
+        border: 1px solid var(--color-btn-border);
+      }
+
+      .btn-social:hover {
+        background: var(--color-btn-hover);
+        color: var(--color-highlight);
+        border: 1px solid var(--color-highlight);
+      }
+
+      header, nav {
+        background: var(--color-header-bg);
+        color: var(--color-header-text);
+      }
+
+      nav a {
+        color: var(--color-header-text) !important;
+        transition: color 0.3s;
+      }
+    </style>
+    <script>
+      // 15 códigos para la ruleta, solo 1 es "bueno"
+      const codigosRuleta = [
+        "CHRONO2025", "BIENVENIDO", "VIPACCESS", "SUPER10", "RUEDA50",
+        "DESC20", "BONUS15", "LUCKY7", "EXTRA5", "PREMIO25",
+        "OFERTA30", "PROMO2025", "DESCUENTO", "REGALO", "User_Insert_1930_???Proyect_Crono" // el bueno
+      ];
+      // Índice del cupón bueno
+      const indiceBueno = 14;
+
+      let ruletaGirando = false;
+      let anguloActual = 0;
+      let codigoActual = "";
+      let ruletaYaUsada = false; // <-- NUEVA VARIABLE DE CONTROL
+
+      // Dibuja la ruleta SIN texto, solo colores
+      function dibujarRuleta(angulo = 0) {
+        const canvas = document.getElementById('canvasRuleta');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const size = canvas.width;
+        const radio = size / 2;
+        ctx.clearRect(0, 0, size, size);
+
+        const secciones = codigosRuleta.length;
+        const anguloSeccion = 2 * Math.PI / secciones;
+        const colores = [
+          "#00ffe7", "#e0ffe7", "#232946", "#00ffe7", "#e0ffe7",
+          "#232946", "#00ffe7", "#e0ffe7", "#232946", "#00ffe7",
+          "#e0ffe7", "#232946", "#00ffe7", "#e0ffe7", "#FFD700"
+        ];
+
+        for (let i = 0; i < secciones; i++) {
+          ctx.beginPath();
+          ctx.moveTo(radio, radio);
+          ctx.arc(radio, radio, radio-8, angulo + i * anguloSeccion, angulo + (i + 1) * anguloSeccion);
+          ctx.closePath();
+          ctx.fillStyle = colores[i % colores.length];
+          ctx.globalAlpha = 0.92;
+          ctx.fill();
+          ctx.globalAlpha = 1;
+        }
+        // Dibuja círculo central
+        ctx.beginPath();
+        ctx.arc(radio, radio, 60, 0, 2 * Math.PI);
+        ctx.fillStyle = "#fff";
+        ctx.shadowColor = "#00ffe7";
+        ctx.shadowBlur = 8;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+        ctx.strokeStyle = "#00ffe7";
+        ctx.lineWidth = 4;
+        ctx.stroke();
+      }
+
+      function abrirRuleta() {
+        if (ruletaYaUsada) {
+          // Mostrar mensaje solo una vez
+          if (!document.getElementById('ruleta-limit-msg')) {
+            const msg = document.createElement('div');
+            msg.id = 'ruleta-limit-msg';
+            msg.textContent = 'You have exceeded the roulette spin limit';
+            msg.style.position = 'fixed';
+            msg.style.top = '30px';
+            msg.style.left = '50%';
+            msg.style.transform = 'translateX(-50%)';
+            msg.style.background = '#f00';
+            msg.style.color = '#fff';
+            msg.style.padding = '1em 2em';
+            msg.style.borderRadius = '8px';
+            msg.style.fontWeight = 'bold';
+            msg.style.zIndex = 10001;
+            msg.style.boxShadow = '0 2px 16px #0008';
+            document.body.appendChild(msg);
+            setTimeout(() => {
+              msg.remove();
+            }, 2600);
+          }
+          return;
+        }
+        ruletaYaUsada = true;
+        document.getElementById('popupRuleta').style.display = 'flex';
+        document.getElementById('codigoGanador').textContent = "";
+        document.querySelector('.ruleta-copy').disabled = true;
+        anguloActual = 0;
+        codigoActual = "";
+        dibujarRuleta(0);
+      }
+
+      function cerrarRuleta() {
+        document.getElementById('popupRuleta').style.display = 'none';
+      }
+
+      function girarRuleta() {
+        if (ruletaGirando) return;
+        ruletaGirando = true;
+        document.getElementById('codigoGanador').textContent = "";
+        document.querySelector('.ruleta-copy').disabled = true;
+
+        // Probabilidad 1 en 10 de sacar el bueno
+        let sectorGanador;
+        if (Math.floor(Math.random() * 10) === 0) {
+          sectorGanador = indiceBueno;
+        } else {
+          // Elige cualquier otro excepto el bueno
+          let otros = Array.from({length: codigosRuleta.length}, (_, i) => i).filter(i => i !== indiceBueno);
+          sectorGanador = otros[Math.floor(Math.random() * otros.length)];
+        }
+
+        // Gira entre 5 y 8 vueltas + sector aleatorio
+        const vueltas = Math.floor(Math.random() * 3) + 5;
+        const secciones = codigosRuleta.length;
+        const anguloSeccion = 2 * Math.PI / secciones;
+        const anguloFinal = (3 * Math.PI / 2) - (sectorGanador * anguloSeccion); // 12h arriba
+        const anguloGiro = vueltas * 2 * Math.PI + anguloFinal;
+
+        const canvas = document.getElementById('canvasRuleta');
+        let start = null;
+        let duracion = 2600;
+        let anguloInicio = anguloActual;
+
+        function animarRuleta(timestamp) {
+          if (!start) start = timestamp;
+          let progreso = (timestamp - start) / duracion;
+          if (progreso > 1) progreso = 1;
+          // Ease out
+          let ease = 1 - Math.pow(1 - progreso, 3);
+          let angulo = anguloInicio + (anguloGiro - anguloInicio) * ease;
+          dibujarRuleta(angulo);
+          if (progreso < 1) {
+            requestAnimationFrame(animarRuleta);
+          } else {
+            anguloActual = anguloGiro % (2 * Math.PI);
+            codigoActual = codigosRuleta[sectorGanador];
+            mostrarCodigoGanador();
+            document.querySelector('.ruleta-copy').disabled = false;
+            ruletaGirando = false;
+            lanzarConfeti();
+          }
+        }
+        requestAnimationFrame(animarRuleta);
+      }
+
+      function mostrarCodigoGanador() {
+        const div = document.getElementById('codigoGanador');
+        div.textContent = "¡Your code is: " + codigoActual + "!";
+        div.style.color = "#111";
+        div.style.fontWeight = "bold";
+      }
+
+      function copiarCodigo() {
+        if (!codigoActual) return;
+        navigator.clipboard.writeText(codigoActual).then(() => {
+          const btn = document.querySelector('.ruleta-copy');
+          btn.textContent = "¡Copied!";
+          setTimeout(() => { btn.textContent = "Copiar código"; }, 1200);
+        });
+      }
+
+      function copiarClaveCripto() {
+        const clave = document.getElementById('cryptoClave').textContent;
+        navigator.clipboard.writeText(clave).then(() => {
+          const btn = document.querySelector('.copy-btn');
+          btn.textContent = "¡Copied!";
+          setTimeout(() => { btn.textContent = "Copy"; }, 1200);
+        });
+      }
+
+      // Confeti simple
+      function lanzarConfeti() {
+        const colors = ["#00ffe7", "#FFD700", "#e0ffe7", "#232946", "#ff69b4", "#00bbaa"];
+        for (let i = 0; i < 80; i++) {
+          const conf = document.createElement("div");
+          conf.className = "confeti";
+          conf.style.left = (Math.random() * 100) + "vw";
+          conf.style.background = colors[Math.floor(Math.random() * colors.length)];
+          conf.style.animationDuration = (Math.random() * 1.5 + 1.5) + "s";
+          conf.style.opacity = Math.random() * 0.7 + 0.3;
+          conf.style.width = conf.style.height = (Math.random() * 8 + 6) + "px";
+          document.body.appendChild(conf);
+          setTimeout(() => conf.remove(), 3000);
+        }
+      }
+
+      // Mostrar ruleta automáticamente a los 30 segundos
+      window.addEventListener('DOMContentLoaded', () => {
+        setTimeout(abrirRuleta, 120000);
+      });
+    </script>
+  </main>
+
+  <footer>
+    &copy; 2025 Chrono · All rights reserved
+    <br>
+    <small style="display:block;color:#888;font-size:0.75rem;margin-top:0.2rem;letter-spacing:0.1px;">
+      This website and its content are entirely fictional and intended for storytelling and entertainment purposes only. Nothing presented should be interpreted as financial advice or factual information.
+    </small>
+  </footer>
+  <script>
+function renderThemeIcon(isLight) {
+      return `
+        <svg class="sun-icon" viewBox="0 0 36 36">
+          <circle class="sun-shape" cx="18" cy="18" r="10"/>
+          <line class="slash" x1="8" y1="28" x2="28" y2="8"/>
+        </svg>
+      `;
+    }
+
+function updateAnImage() {
+  const img = document.getElementById('altered-an');
+  if (!img) return;
+  if (document.body.classList.contains('dark-mode')) {
+    img.src = './img/black.jpg';
+  } else {
+    img.src = './img/white.jpg';
+  }
+}
+
+// Llama a la función al cargar y al cambiar el tema
+document.addEventListener('DOMContentLoaded', updateAnImage);
+document.getElementById('theme-toggle').addEventListener('click', function() {
+  setTimeout(updateAnImage, 10); // Espera a que cambie la clase del body
+});
+
+function setTheme(isLight) {
+  document.body.classList.toggle('light-mode', isLight);
+  document.body.classList.toggle('dark-mode', !isLight);
+  document.getElementById('theme-toggle').innerHTML = renderThemeIcon(isLight);
+}
+function getThemePref() {
+  if (localStorage.getItem('theme')) {
+    return localStorage.getItem('theme') === 'light';
+  }
+  return false;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const btn = document.getElementById('theme-toggle');
+  let isLight = getThemePref();
+  setTheme(isLight);
+
+  btn.addEventListener('click', function() {
+    isLight = !document.body.classList.contains('light-mode');
+    setTheme(isLight);
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+  });
+});
+
+  </script>
+  <!-- Tu JS de la ruleta, simulador, efectos, etc. sigue igual aquí -->
+</body>
+</html>

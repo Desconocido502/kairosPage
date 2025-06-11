@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chrono | About Us</title>
+  <link rel="stylesheet" href="./styles/styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Chrono Corp</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="technology.html">Technology</a>
+      <a href="investment.html">$KRS</a>
+      <a href="contact.html">Contact</a>
+      <a href="portal.html">Redeem</a>
+    </nav>
+    <button id="theme-toggle" aria-label="Toggle dark/light mode" class="theme-switch"></button>
+  </header>
+
+  <section class="dynamic-info" id="dynamic-info">
+    <h2 id="info-title">About Chrono Corp</h2>
+    <p id="info-text">
+      At <strong>Chrono Corp</strong>, we stand at the edge of what is known and what is yet to be discovered. Our flagship division, <strong>ChronoGate</strong>, harnesses experimental gravitational impulse architectures synchronized with high-frequency quantum oscillations to initiate safe temporal apertures.<br><br>
+      These operations are governed by adaptive AI overseen by a multilayered ethics protocol and executed through blockchain-secured smart contracts, ensuring immutable traceability of each temporal displacement.<br><br>
+      Our goal is not merely to traverse time, but to understand it — to build a future where chrono-logistics enable humanity to correct past imbalances and anticipate existential threats before they arise.<br><br>
+      <em>We don’t just ask “what if” — we ask “when.”</em>
+    </p>
+  </section>
+
+  <div class="dynamic-banner" id="dynamic-banner">
+    <img src="./img/bannerwho.png" alt="Banner" id="banner-img">
+  </div>
+
+  <section class="team">
+    <h2>Our team</h2>
+    <div class="team-members">
+      <div class="member">
+        <img src="https://i.pravatar.cc/300?img=47" alt="Dr. Ana Torres">
+        <h3>Dr. Ana Torres</h3>
+        <p>Founder and CEO. Quantum physicist and visionary leader.</p>
+      </div>
+      <div class="member">
+        <img src="https://i.pravatar.cc/300?img=12" alt="Eng. Luis Ramírez">
+        <h3>Eng. Luis Ramírez</h3>
+        <p>CTO. Specialist in temporal engineering and advanced systems.</p>
+      </div>
+      <div class="member">
+        <img src="https://i.pravatar.cc/300?img=35" alt="Dr. Sofía Méndez">
+        <h3>Dr. Sofía Méndez</h3>
+        <p>Director of Temporal Ethics. Ensures the responsible use of technology.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq">
+    <h2>Frequently Asked Questions</h2>
+    <details>
+      <summary>Is time travel really possible?</summary>
+      <p>Our team is developing technology based on advanced scientific theories. Follow our progress!</p>
+    </details>
+    <details>
+      <summary>How can I invest?</summary>
+      <p>Visit the <a href="investment.html">Crypto Funding</a> section to learn about the available options.</p>
+    </details>
+    <details>
+      <summary>What safety measures are in place?</summary>
+      <p>We have strict protocols and a team dedicated to temporal ethics and safety.</p>
+    </details>
+  </section>
+
+  <footer>
+    &copy; 2025 Chrono · All rights reserved
+    <br>
+    <small style="display:block;color:#888;font-size:0.75rem;margin-top:0.2rem;letter-spacing:0.1px;">
+      This website and its content are entirely fictional and intended for storytelling and entertainment purposes only. Nothing presented should be interpreted as financial advice or factual information.
+    </small>
+  </footer>
+
+  <!-- Script de cambio de tema -->
+  <script>
+
+    // Highlight the active link according to the URL
+    document.querySelectorAll('nav a').forEach(link => {
+      if (window.location.pathname.endsWith(link.getAttribute('href'))) {
+        link.classList.add('activo');
+      }
+      // Ripple effect on click
+      link.addEventListener('click', function(e) {
+        const ripple = document.createElement('span');
+        ripple.className = 'ripple';
+        this.appendChild(ripple);
+        const max = Math.max(this.offsetWidth, this.offsetHeight);
+        ripple.style.width = ripple.style.height = max + 'px';
+        ripple.style.left = (e.offsetX - max/2) + 'px';
+        ripple.style.top = (e.offsetY - max/2) + 'px';
+        setTimeout(() => ripple.remove(), 600);
+      });
+    });
+
+
+function renderThemeIcon(isLight) {
+  return `
+    <svg class="sun-icon" viewBox="0 0 36 36">
+      <circle class="sun-shape" cx="18" cy="18" r="10"/>
+      <line class="slash" x1="8" y1="28" x2="28" y2="8"/>
+    </svg>
+  `;
+}
+
+function setTheme(isLight) {
+  document.body.classList.toggle('light-mode', isLight);
+  document.body.classList.toggle('dark-mode', !isLight);
+  document.getElementById('theme-toggle').innerHTML = renderThemeIcon(isLight);
+}
+
+function getThemePref() {
+  if (localStorage.getItem('theme')) {
+    return localStorage.getItem('theme') === 'light';
+  }
+  return false;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const btn = document.getElementById('theme-toggle');
+  let isLight = getThemePref();
+  setTheme(isLight);
+
+  btn.addEventListener('click', function() {
+    isLight = !document.body.classList.contains('light-mode');
+    setTheme(isLight);
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+  });
+});
+  </script>
+  <style>
+header, nav {
+  background: var(--color-header-bg);
+  color: var(--color-header-text);
+  transition: background 0.3s, color 0.3s;
+}
+
+nav a {
+  color: var(--color-header-text);
+  transition: color 0.3s;
+}
+.dynamic-banner {
+  position: relative;
+  width: 90%;
+  max-width: 900px;
+  margin: 30px auto 0 auto;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 4px 32px #0003;
+  transition: box-shadow 0.3s;
+  background: var(--color-card);
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: unset;
+  right: unset;
+  transform: none;
+}
+.dynamic-banner img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  transition: opacity 0.5s;
+  display: block;
+}
+.dynamic-info {
+  max-width: 700px;
+  margin: 60px auto 40px auto; /* <-- aumenta el espacio superior */
+  background: var(--color-card);
+  border-radius: 14px;
+  padding: 2.5em 2em;
+  box-shadow: 0 2px 16px #0002;
+  transition: background 0.3s;
+  text-align: center;
+  position: relative;
+}
+.dynamic-info h2 {
+  margin-top: 0;
+  font-size: 2rem;
+  letter-spacing: 0.03em;
+}
+@media (max-width: 700px) {
+  .dynamic-banner img { height: 140px; }
+  .dynamic-banner { min-height: 140px; }
+  .dynamic-info { padding: 1.2em 0.5em; margin-top: 30px; }
+}
+  </style>
+</body>
+</html>

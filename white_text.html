@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>------------</title>
+  <style>
+    body {
+      background: #111;
+      color: #fff;
+      margin: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+    #crazy-text {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-family: monospace;
+      font-size: 1.2rem;
+      text-align: center;
+      transition: all 0.3s cubic-bezier(.68,-0.55,.27,1.55);
+      white-space: pre-line;
+      user-select: none;
+      pointer-events: none;
+      max-width: 90vw;
+      max-height: 90vh;
+    }
+    .fake-popup {
+      position: absolute;
+      width: 320px;
+      height: 120px;
+      background: #181818;
+      color: #fff;
+      border: 2px solid #c00;
+      box-shadow: 0 0 16px #000a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: monospace;
+      font-size: 1.2rem;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.97;
+      border-radius: 8px;
+      animation: popup-fadein 0.4s;
+    }
+    @keyframes popup-fadein {
+      from { opacity: 0; transform: scale(0.8);}
+      to   { opacity: 0.97; transform: scale(1);}
+    }
+  </style>
+</head>
+<body>
+  <div id="crazy-text">
+    Jr sbhaq fvtanyf sebz 6430 gung frag hf irel fcrpvsvp vafgehpgvbaf ba ubj gb zbir sbejneq jvgu gur perngvba bs gur puebab tngr. Jr qba'g xabj gurve bevtva, ohg gurl jrer irel urycshy.
+  </div>
+  <script>
+    const text = document.getElementById('crazy-text');
+    function randomizeText() {
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      const maxFont = 2.5, minFont = 1.0;
+      const fontSize = (Math.random() * (maxFont - minFont) + minFont).toFixed(2) + 'rem';
+      text.style.fontSize = fontSize;
+      text.style.left = '50%';
+      text.style.top = '50%';
+      text.style.transform = 'translate(-50%, -50%)';
+      setTimeout(() => {
+        const safeW = vw - text.offsetWidth;
+        const safeH = vh - text.offsetHeight;
+        const left = Math.max(0, Math.random() * safeW);
+        const top = Math.max(0, Math.random() * safeH);
+        text.style.left = left + 'px';
+        text.style.top = top + 'px';
+        text.style.transform = 'none';
+      }, 10);
+    }
+    setInterval(randomizeText, 600);
+
+    // Cuadros emergentes internos 10 segundos antes de redirigir
+    let popupInterval;
+    setTimeout(() => {
+      popupInterval = setInterval(() => {
+        const popup = document.createElement('div');
+        popup.className = 'fake-popup';
+        popup.textContent = 'YOU SHOULD NOT BE HERE';
+        const vw = window.innerWidth, vh = window.innerHeight;
+        const left = Math.random() * (vw - 340); // 320px ancho + margen
+        const top = Math.random() * (vh - 140);  // 120px alto + margen
+        popup.style.left = left + 'px';
+        popup.style.top = top + 'px';
+        document.body.appendChild(popup);
+        // Opcional: Desaparecen después de unos segundos
+        setTimeout(() => popup.remove(), 5000);
+      }, 400);
+    }, 10000); // 10 segundos
+
+    // Redirige después de 20 segundos (20000 ms)
+    setTimeout(() => {
+      if (popupInterval) clearInterval(popupInterval);
+      window.location.href = "technology.html";
+    }, 20000);
+  </script>
+</body>
+</html>

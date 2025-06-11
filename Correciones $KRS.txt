@@ -1,0 +1,25 @@
+------------------------------------------------------------------------------------
+Generales
+------------------------------------------------------------------------------------
+- Quitar que redeem este siempre celeste. ✅
+- Colocar en la nav bar que la pagina en la que este, el texto este en celeste. ✅
+- Colocar un disclaimer en el foother que la empresa no es real. *Manuel puede pasarme el texto* ✅
+- Cambiar nombres de los archivos HTML a ingles. ✅
+------------------------------------------------------------------------------------
+
+#1 Mover Our team y frequently asked questions a about us ✅
+ 1.1. cambiar descripción de aboout us e imágenes ✅
+*Nota: el video de presentación debe de ir arriba del titulo de our technology*** cuando este el video ✅
+
+#2 About Us
+2.1. Colocar mas info "Manuel me la pasara" ✅
+
+#3 Technology
+3.1. Hacer que la X de la ventana emergente en el tempus relay funcione.
+
+#4 $KRS
+4.1 Borrar el botón How to use the tempus y temporal Return Simulator ✅
+4.2 Borrar el disclamer del foother. ✅ //se coloco un nuevo disclaimer
+4.3 Mover la ruleta que sale después de esperar 2 minutos. 
+4.4 Realizar cambios explicados en la primera imagen.
+4.5 Realizar cambio en imagen #2 . Boton del dex, en fondo negro y letra Roja "Debido a que no funciona aun". 

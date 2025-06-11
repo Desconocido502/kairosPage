@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chrono | Technology</title>
+  <link rel="stylesheet" href="./styles/styles.css" />
+  <style>
+    header, nav {
+  background: var(--color-header-bg);
+  color: var(--color-header-text);
+  transition: background 0.3s, color 0.3s;
+}
+
+nav a {
+  color: var(--color-header-text);
+  transition: color 0.3s;
+}
+#an-mask {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 4px;
+  z-index: 4; /* MÁS que el botón */
+}
+#an-btn-reveal {
+  z-index: 3;
+}
+.tech-card-info {
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 340px;
+}
+
+.tech-card-info a {
+  word-break: break-all;
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Chrono Corp</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="technology.html">Technology</a>
+      <a href="investment.html">$KRS</a>
+      <a href="contact.html">Contact</a>
+      <a href="portal.html">Redeem</a>
+    </nav>
+    <button id="theme-toggle" aria-label="Toggle dark/light mode" class="theme-switch"></button>
+  </header>
+
+  <section class="tech-intro">
+  <h2>Our Technology</h2>
+  <h3>Decades of Temporal Innovation</h3>
+  <p>
+    At Chrono Corp, our obsession with time travel has driven us to create groundbreaking technologies, each a stepping stone toward the ultimate goal: the Chrono Gate. Explore our legacy of innovation.
+  </p>
+</section>
+<section class="tech-experiment">
+  <div class="tech-card">
+    <div class="tech-card-img">
+      <img src="./img/tele.png" alt="Chronovisor device">
+    </div>
+    <div class="tech-card-info">
+      <h3>Chronovisor <span class="tech-year">(2023)</span></h3>
+      <p>
+        Our first breakthrough, the Chronovisor allowed us to glimpse moments from the past through quantum imaging.<br>
+        By tuning into temporal frequencies, we could observe history as it unfolded—though some signals were… unexpected.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="tech-experiment">
+  <div class="tech-card">
+    <div class="tech-card-img">
+      <img src="./img/tempus.png" alt="Chronovisor device">
+    </div>
+    <div class="tech-card-info">
+      <h3>The Tempus Relay<span class="tech-year">(2024)</span></h3>
+      <p>
+        A device capable of teleporting small objects across time, the Tempus Relay marked a leap forward.<br>
+         We successfully sent artifacts to the past and future, but the objects often returned… altered, as if something had interfered.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Results of The Tempus Relay Button and Modal -->
+<button id="tempus-results-btn" class="btn-hero" style="margin:2rem auto;display:block;">
+  Results of The Tempus Relay
+</button>
+
+<section class="tech-experiment">
+  <div class="tech-card">
+    <div class="tech-card-img">
+      <img src="./img/echo.png" alt="Nuevo Experimento" id="echo-img">
+    </div>
+    <div class="tech-card-info">
+      <h3>The Echo Pulse  <span class="tech-year">(2024)</span></h3>
+      <p>
+       Designed to detect temporal anomalies, the Echo Pulse revealed disturbances in the timeline—ripples we couldn’t explain. It confirmed one truth: time is not as linear as we believed.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="tech-experiment">
+  <div class="tech-card">
+    <div class="tech-card-img">
+      <img src="./img/Chronovisor upadte.png" alt="Nuevo Experimento">
+    </div>
+    <div class="tech-card-info">
+      <h3>Chronovisor update <span class="tech-year">2025</span></h3>
+      <p>
+        Big news from Chrono Corp! We've updated the Chronovisor: it not only sees the past but also glimpses the future. We won’t peek yet to keep the surprise… but you can! Check out the future on our TikTok: 
+        <a href="https://www.tiktok.com/@chrono.collapse4025" target="_blank" rel="noopener">https://www.tiktok.com/@chrono.collapse4025</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="tech-experiment">
+  <div class="tech-card">
+    <div class="tech-card-img">
+      <img src="./img/gate.png" alt="Mystery Device">
+    </div>
+    <div class="tech-card-info">
+      <h3>The Chrono Gate<span class="tech-year">2025</span></h3>
+      <p>The pinnacle of our research, the Chrono Gate is the world’s first true time travel device. Powered by KRS and advanced quantum mechanics, it’s nearly complete. Soon, we’ll step through time itself. The signal is stronger than ever. Our latest prototype remains classified. Early tests suggest it can interact with timelines in ways we never imagined. Details will be revealed soon. Stay tuned for the next leap in temporal technology.
+      </p>
+    </div>
+  </div>
+</section>
+
+<div id="tempus-modal" class="tempus-modal">
+  <div class="tempus-modal-content">
+    <span class="tempus-close" id="tempus-close">&times;</span>
+    <h2>Results of The Tempus Relay</h2>
+    <p>
+      These are the results we have obtained over the years by entering different objects into our first prototype 1.01, by pressing the result button it will reveal what the result of each one was.
+    </p>
+    <h3 style="margin-top:2rem;">Apple</h3>
+    <div style="display:flex;gap:2rem;justify-content:center;align-items:flex-start;flex-wrap:wrap;">
+      <div style="text-align:center;">
+        <div class="photo-experiment" style="width:160px;height:160px;margin:0 auto;display:flex;align-items:center;justify-content:center;">
+          <img src="./img/apple-original.jpg" alt="Original Apple"
+            style="width:144px;height:144px;object-fit:cover;border-radius:4px;display:block;">
+        </div>
+        <div style="font-size:0.95rem;color:#aaa;">Original</div>
+        <div style="min-height:38px;"></div>
+      </div>
+      <div style="text-align:center;">
+        <div class="photo-experiment" style="width:160px;height:160px;margin:0 auto;position:relative;display:flex;align-items:center;justify-content:center;">
+          <img src="./img/apple-altered.png" alt="Altered Apple" id="altered-apple"
+            style="width:144px;height:144px;object-fit:cover;border-radius:4px;display:block;">
+          <canvas id="apple-mask" width="144" height="144"
+    style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border-radius:4px;"></canvas>
+        </div>
+        <div style="font-size:0.95rem;color:#aaa;">Altered</div>
+        <button id="reveal-btn" class="btn-hero" style="margin-top:0.3rem;font-size:0.88rem;padding:0.25em 1em;">Reveal Result</button>
+      </div>
+    </div>
+    <h3 style="margin-top:2.5rem;">Teddy Bear</h3>
+    <div style="display:flex;gap:2rem;justify-content:center;align-items:flex-start;flex-wrap:wrap;">
+      <div style="text-align:center;">
+        <div class="photo-experiment" style="width:160px;height:160px;margin:0 auto;display:flex;align-items:center;justify-content:center;">
+          <img src="./img/teddy-original.jpg" alt="Original Teddy Bear"
+            style="width:144px;height:144px;object-fit:cover;border-radius:4px;display:block;">
+        </div>
+        <div style="font-size:0.95rem;color:#aaa;">Original</div>
+        <div style="min-height:38px;"></div>
+      </div>
+      <div style="text-align:center;">
+        <div class="photo-experiment" style="width:160px;height:160px;margin:0 auto;position:relative;display:flex;align-items:center;justify-content:center;">
+          <img src="./img/tdalt.png" alt="Altered Teddy Bear" id="altered-teddy"
+            style="width:144px;height:144px;object-fit:cover;border-radius:4px;display:block;">
+          <canvas id="teddy-mask" width="144" height="144"
+            style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border-radius:4px;"></canvas>
+        </div>
+        <div style="font-size:0.95rem;color:#aaa;">Altered</div>
+        <button id="reveal-teddy-btn" class="btn-hero" style="margin-top:0.3rem;font-size:0.88rem;padding:0.25em 1em;">Reveal Result</button>
+      </div>
+    </div>
+    <h3 style="margin-top:2.5rem;">Rat</h3>
+<div style="display:flex;gap:2rem;justify-content:center;align-items:flex-start;flex-wrap:wrap;">
+  <div style="text-align:center;">
+    <div class="photo-experiment" style="width:160px;height:160px;margin:0 auto;display:flex;align-items:center;justify-content:center;">
+      <img src="./img/Rata.png" alt="Original Rat"
+        style="width:144px;height:144px;object-fit:cover;border-radius:4px;display:block;">
+    </div>
+    <div style="font-size:0.95rem;color:#aaa;">Original</div>
+    <div style="min-height:38px;"></div>
+  </div>
+  <div style="text-align:center;">
+    <div class="photo-experiment" style="width:160px;height:160px;margin:0 auto;position:relative;display:flex;align-items:center;justify-content:center;">
+      <img src="./img/rat alt.png" alt="Altered Rat" id="altered-rat"
+        style="width:144px;height:144px;object-fit:cover;border-radius:4px;display:block;">
+      <canvas id="rat-mask" width="144" height="144"
+        style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border-radius:4px;"></canvas>
+    </div>
+    <div style="font-size:0.95rem;color:#aaa;">Altered</div>
+    <button id="reveal-rat-btn" class="btn-hero" style="margin-top:0.3rem;font-size:0.88rem;padding:0.25em 1em;">Reveal Result</button>
+  </div>
+</div>
+<h3 style="margin-top:2.5rem;">ANΘRΩΠØΣ</h3>
+<div style="display:flex;gap:2rem;justify-content:center;align-items:flex-start;flex-wrap:wrap;">
+  <div style="text-align:center;">
+    <div class="photo-experiment" style="width:160px;height:160px;margin:0 auto;display:flex;align-items:center;justify-content:center;">
+      <img src="./img/white.jpg" alt="Original ANΘRΩΠØΣ"
+        style="width:144px;height:144px;object-fit:cover;border-radius:4px;display:block;">
+    </div>
+    <div style="font-size:0.95rem;color:#aaa;">Original</div>
+    <div style="min-height:38px;"></div>
+  </div>
+  <div style="text-align:center;">
+    <div class="photo-experiment" id="an-secret-area" style="width:160px;height:160px;margin:0 auto;position:relative;display:flex;align-items:center;justify-content:center;">
+      <img id="altered-an" src="./img/black.jpg" alt="Altered ANΘRΩΠØΣ"
+        style="width:144px;height:144px;object-fit:cover;border-radius:4px;display:block;">
+      <canvas id="an-mask" width="144" height="144"
+        style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border-radius:4px;"></canvas>
+      <button id="an-btn-reveal"
+        style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:1px;height:1px;background:#fff;border:none;border-radius:50%;cursor:pointer;z-index:3;display:flex;align-items:center;justify-content:center;">
+      </button>
+    </div>
+    <div style="font-size:0.95rem;color:#aaa;">Altered</div>
+    <button id="reveal-an-btn" class="btn-hero" style="margin-top:0.3rem;font-size:0.88rem;padding:0.25em 1em;">Reveal Result</button>
+  </div>
+</div>
+  </div>
+</div>
+
+<!-- Modal agresivo para el código -->
+<div id="an-modal" style="display:none;position:fixed;z-index:10000;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.92);justify-content:center;align-items:center;">
+  <div style="background:#fff;color:#111;padding:2.5rem 2rem 2rem 2rem;border-radius:16px;box-shadow:0 4px 32px #f00b;max-width:340px;width:90vw;text-align:center;position:relative;">
+    <span id="an-modal-close" style="position:absolute;right:1.2rem;top:1.2rem;font-size:2rem;cursor:pointer;color:#f00;font-weight:bold;">&times;</span>
+    <h2 style="color:#f00;margin-bottom:1.2rem;">ACCESS DENIED</h2>
+    <p style="margin-bottom:1.2rem;">Enter the code to continue:</p>
+    <input id="an-code-input" type="text" style="padding:0.5em 1em;font-size:1.1rem;border:2px solid #f00;border-radius:6px;margin-bottom:1.2rem;outline:none;">
+    <br>
+    <button style="background:#f00;color:#fff;padding:0.5em 1.5em;border:none;border-radius:6px;font-size:1.1rem;cursor:pointer;">Submit</button>
+  </div>
+</div>
+
+  <footer>
+    &copy; 2025 Chrono · All rights reserved
+    <br>
+    <small style="display:block;color:#888;font-size:0.75rem;margin-top:0.2rem;letter-spacing:0.1px;">
+      This website and its content are entirely fictional and intended for storytelling and entertainment purposes only. Nothing presented should be interpreted as financial advice or factual information.
+    </small>
+  </footer>
+  <script>
+
+    // Highlight the active link according to the URL
+    document.querySelectorAll('nav a').forEach(link => {
+      if (window.location.pathname.endsWith(link.getAttribute('href'))) {
+        link.classList.add('activo');
+      }
+      // Ripple effect on click
+      link.addEventListener('click', function(e) {
+        const ripple = document.createElement('span');
+        ripple.className = 'ripple';
+        this.appendChild(ripple);
+        const max = Math.max(this.offsetWidth, this.offsetHeight);
+        ripple.style.width = ripple.style.height = max + 'px';
+        ripple.style.left = (e.offsetX - max/2) + 'px';
+        ripple.style.top = (e.offsetY - max/2) + 'px';
+        setTimeout(() => ripple.remove(), 600);
+      });
+    });
+
+function renderThemeIcon(isLight) {
+  // SVG: sun in a white circle, with a slash if light mode
+  return `
+    <svg class="sun-icon" viewBox="0 0 36 36">
+      <circle class="sun-shape" cx="18" cy="18" r="10"/>
+      <line class="slash" x1="8" y1="28" x2="28" y2="8"/> 
+    </svg>
+  `;
+}
+
+function setTheme(isLight) {
+  document.body.classList.toggle('light-mode', isLight);
+  document.body.classList.toggle('dark-mode', !isLight);
+  document.getElementById('theme-toggle').innerHTML = renderThemeIcon(isLight);
+}
+
+function getThemePref() {
+  if (localStorage.getItem('theme')) {
+    return localStorage.getItem('theme') === 'light';
+  }
+  // Default: dark mode
+  return false;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const btn = document.getElementById('theme-toggle');
+  let isLight = getThemePref();
+  setTheme(isLight);
+
+  btn.addEventListener('click', function() {
+    isLight = !document.body.classList.contains('light-mode');
+    setTheme(isLight);
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+  });
+});
+
+// Modal logic for Tempus Relay Results
+document.addEventListener('DOMContentLoaded', function() {
+  const modal = document.getElementById('tempus-modal');
+  const openBtn = document.getElementById('tempus-results-btn');
+  const closeBtn = document.getElementById('tempus-close');
+  const revealBtn = document.getElementById('reveal-btn');
+  const mask = document.getElementById('apple-mask');
+  const alteredApple = document.getElementById('altered-apple');
+  let revealStep = 0;
+  let revealInterval = null;
+
+  function showModal() {
+    modal.style.display = 'flex';
+    // Reset apple mask
+    if (mask && alteredApple) {
+      const ctx = mask.getContext('2d');
+      ctx.fillStyle = '#111';
+      ctx.globalAlpha = 1;
+      ctx.fillRect(0, 0, mask.width, mask.height);
+      revealStep = 0;
+      if (revealInterval) clearInterval(revealInterval);
+    }
+    // Reset teddy mask
+    if (teddyMask) {
+      const ctx = teddyMask.getContext('2d');
+      ctx.fillStyle = '#111';
+      ctx.globalAlpha = 1;
+      ctx.fillRect(0, 0, teddyMask.width, teddyMask.height);
+      teddyBtn && (teddyBtn.revealing = false);
+    }
+    // Reset rat mask
+    if (ratMask) {
+      const ctx = ratMask.getContext('2d');
+      ctx.fillStyle = '#111';
+      ctx.globalAlpha = 1;
+      ctx.fillRect(0, 0, ratMask.width, ratMask.height);
+      ratBtn && (ratBtn.revealing = false);
+    }
+  }
+  function hideModal() {
+    modal.style.display = 'none';
+    if (revealInterval) clearInterval(revealInterval);
+  }
+
+  if (openBtn) openBtn.onclick = showModal;
+  if (closeBtn) closeBtn.onclick = hideModal;
+  window.onclick = function(e) {
+    if (e.target === modal) hideModal();
+  };
+
+  // Reveal effect
+  if (revealBtn && mask) {
+    revealBtn.onclick = function() {
+      if (revealInterval) return; // Prevent multiple
+      const ctx = mask.getContext('2d');
+      let revealStep = 0;
+      const totalSteps = 32;
+      const stepHeight = mask.height / totalSteps;
+      revealInterval = setInterval(() => {
+        if (revealStep >= totalSteps) {
+          clearInterval(revealInterval);
+          revealInterval = null;
+          return;
+        }
+        // Descubre una franja horizontal de abajo hacia arriba
+        ctx.clearRect(0, mask.height - (revealStep + 1) * stepHeight, mask.width, stepHeight);
+        revealStep++;
+      }, 60);
+    };
+  }
+
+  // Reveal effect for Teddy Bear
+  const teddyBtn = document.getElementById('reveal-teddy-btn');
+  const teddyMask = document.getElementById('teddy-mask');
+  if (teddyBtn && teddyMask) {
+    teddyBtn.onclick = function() {
+      if (teddyBtn.revealing) return;
+      teddyBtn.revealing = true;
+      const ctx = teddyMask.getContext('2d');
+      let revealStep = 0;
+      const totalSteps = 32;
+      const stepHeight = teddyMask.height / totalSteps;
+      ctx.fillStyle = '#111';
+      ctx.globalAlpha = 1;
+      ctx.fillRect(0, 0, teddyMask.width, teddyMask.height);
+      const interval = setInterval(() => {
+        if (revealStep >= totalSteps) {
+          clearInterval(interval);
+          teddyBtn.revealing = false;
+          return;
+        }
+        ctx.clearRect(0, teddyMask.height - (revealStep + 1) * stepHeight, teddyMask.width, stepHeight);
+        revealStep++;
+      }, 60);
+    };
+  }
+
+  // Reveal effect for Rat
+  const ratBtn = document.getElementById('reveal-rat-btn');
+  const ratMask = document.getElementById('rat-mask');
+  if (ratBtn && ratMask) {
+    ratBtn.onclick = function() {
+      if (ratBtn.revealing) return;
+      ratBtn.revealing = true;
+      const ctx = ratMask.getContext('2d');
+      let revealStep = 0;
+      const totalSteps = 32;
+      const stepHeight = ratMask.height / totalSteps;
+      ctx.fillStyle = '#111';
+      ctx.globalAlpha = 1;
+      ctx.fillRect(0, 0, ratMask.width, ratMask.height);
+      const interval = setInterval(() => {
+        if (revealStep >= totalSteps) {
+          clearInterval(interval);
+          ratBtn.revealing = false;
+          return;
+        }
+        ctx.clearRect(0, ratMask.height - (revealStep + 1) * stepHeight, ratMask.width, stepHeight);
+        revealStep++;
+      }, 60);
+    };
+  }
+
+// --- ANΘRΩΠØΣ sección especial ---
+let anHiddenBtn = null;
+
+const anBtnReveal = document.getElementById('an-btn-reveal');
+if (anBtnReveal) {
+  anBtnReveal.onclick = function(e) {
+    e.stopPropagation();
+    if (anHiddenBtn) return;
+
+    const anModal = document.getElementById('an-modal'); // <-- AGREGA ESTA LÍNEA
+
+    anHiddenBtn = document.createElement('button');
+anHiddenBtn.textContent = 'ACCESS';
+anHiddenBtn.style.position = 'fixed';
+anHiddenBtn.style.zIndex = 9999;
+anHiddenBtn.style.background = '#181818';           // Fondo oscuro crudo
+anHiddenBtn.style.color = '#e0e0e0';                // Texto gris claro
+anHiddenBtn.style.border = '2px solid #aaa';        // Borde gris
+anHiddenBtn.style.borderRadius = '3px';             // Cuadrado con esquinas apenas redondeadas
+anHiddenBtn.style.fontFamily = 'monospace';         // Fuente retro
+anHiddenBtn.style.fontWeight = 'bold';
+anHiddenBtn.style.letterSpacing = '0.09em';
+anHiddenBtn.style.fontSize = '1.05rem';
+anHiddenBtn.style.padding = '0.38em 1.1em';
+anHiddenBtn.style.boxShadow = 'none';               // Sin brillo
+anHiddenBtn.style.textShadow = 'none';              // Sin brillo
+anHiddenBtn.style.cursor = 'pointer';
+    // Posición inicial aleatoria
+    moveBtn();
+    document.body.appendChild(anHiddenBtn);
+
+    // Crea un canvas encima del botón para el efecto reveal
+    const btnRect = anHiddenBtn.getBoundingClientRect();
+    const btnCanvas = document.createElement('canvas');
+    btnCanvas.width = btnRect.width;
+    btnCanvas.height = btnRect.height;
+    btnCanvas.style.position = 'fixed';
+    btnCanvas.style.left = btnRect.left + 'px';
+    btnCanvas.style.top = btnRect.top + 'px';
+    btnCanvas.style.pointerEvents = 'none';
+    btnCanvas.style.zIndex = 10000;
+    document.body.appendChild(btnCanvas);
+
+    // Reveal del botón flotante
+    let revealStep = 0;
+    const totalSteps = 24;
+    const stepHeight = btnCanvas.height / totalSteps;
+    const ctx = btnCanvas.getContext('2d');
+    ctx.fillStyle = '#111';
+    ctx.globalAlpha = 0.95;
+    ctx.fillRect(0, 0, btnCanvas.width, btnCanvas.height);
+    const revealInterval = setInterval(() => {
+      if (revealStep >= totalSteps) {
+        clearInterval(revealInterval);
+        btnCanvas.remove();
+        return;
+      }
+      ctx.clearRect(0, btnCanvas.height - (revealStep + 1) * stepHeight, btnCanvas.width, stepHeight);
+      revealStep++;
+    }, 40);
+
+    function moveBtn() {
+      const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+      const vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+      const left = Math.random() * (vw - 120);
+      const top = Math.random() * (vh - 60 - 40) + 40;
+      anHiddenBtn.style.left = `${left}px`;
+      anHiddenBtn.style.top = `${top}px`;
+    }
+
+    let clickCount = 0;
+
+    anHiddenBtn.onclick = function(ev) {
+      ev.stopPropagation();
+      clickCount++;
+      anHiddenBtn.style.transform = `scale(${1 - clickCount * 0.12})`; // Animación de reducción leve
+      if (clickCount >= 5) {
+        anHiddenBtn.remove();
+        anHiddenBtn = null;
+        if (anModal) anModal.style.display = 'flex'; // Ahora sí funciona
+      } else {
+        moveBtn();
+      }
+    };
+  };
+}
+
+// Cerrar el modal agresivo
+const anModalClose = document.getElementById('an-modal-close');
+const anModal = document.getElementById('an-modal');
+if (anModalClose) {
+  anModalClose.onclick = function() {
+    anModal.style.display = 'none';
+    document.getElementById('an-code-input').value = '';
+  };
+}
+    // Close the inner DOMContentLoaded function
+  }); // <-- This closes the second document.addEventListener('DOMContentLoaded', ...)
+
+  // Reveal effect for ANΘRΩΠØΣ
+  const revealAnBtn = document.getElementById('reveal-an-btn');
+  const anMask = document.getElementById('an-mask');
+  if (revealAnBtn && anMask) {
+    revealAnBtn.onclick = function() {
+      if (revealAnBtn.revealing) return;
+      revealAnBtn.revealing = true;
+      const ctx = anMask.getContext('2d');
+      let revealStep = 0;
+      const totalSteps = 32;
+      const stepHeight = anMask.height / totalSteps;
+      ctx.fillStyle = '#111';
+      ctx.globalAlpha = 1;
+      ctx.fillRect(0, 0, anMask.width, anMask.height);
+      const interval = setInterval(() => {
+        if (revealStep >= totalSteps) {
+          clearInterval(interval);
+          revealAnBtn.revealing = false;
+          // Al terminar el efecto reveal:
+anMask.style.pointerEvents = 'none';
+          return;
+        }
+        ctx.clearRect(0, anMask.height - (revealStep + 1) * stepHeight, anMask.width, stepHeight);
+        revealStep++;
+      }, 60);
+    };
+  }
+
+  function updateAnImage() {
+  const img = document.getElementById('altered-an');
+  if (!img) return;
+  if (document.body.classList.contains('dark-mode')) {
+    img.src = './img/black.jpg';
+  } else {
+    img.src = './img/white.jpg';
+  }
+}
+
+// Llama a la función al cargar y al cambiar el tema
+document.addEventListener('DOMContentLoaded', updateAnImage);
+document.getElementById('theme-toggle').addEventListener('click', function() {
+  setTimeout(updateAnImage, 10); // Espera a que cambie la clase del body
+});
+document.addEventListener('DOMContentLoaded', function() {
+  // ...existing code...
+
+  // Al abrir el modal, cubre la imagen altered-an con el canvas
+  function coverAnMask() {
+    const anMask = document.getElementById('an-mask');
+    if (anMask) {
+      const ctx = anMask.getContext('2d');
+      ctx.fillStyle = '#111';
+      ctx.globalAlpha = 1;
+      ctx.fillRect(0, 0, anMask.width, anMask.height);
+    }
+  }
+
+  // Llama a coverAnMask al cargar y al abrir el modal
+  coverAnMask();
+  const openBtn = document.getElementById('tempus-results-btn');
+  if (openBtn) {
+    openBtn.addEventListener('click', coverAnMask);
+  }
+
+  // ...existing code...
+});
+document.addEventListener('DOMContentLoaded', function() {
+  const echoImg = document.getElementById('echo-img');
+  let echoClickCount = 0;
+  if (echoImg) {
+    echoImg.addEventListener('click', function() {
+      echoClickCount++;
+      if (echoClickCount >= 13) {
+        window.location.href = 'white_text.html';
+      }
+    });
+  }
+});
+  </script>
+</body>
+</html>

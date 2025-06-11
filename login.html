@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chrono | Acceso Empleado</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #000;
+      font-family: 'Courier New', Courier, monospace;
+      overflow: hidden;
+      color: #e0e0e0;
+    }
+    .vhs-bg {
+      position: fixed;
+      left: 0; top: 0; right: 0; bottom: 0;
+      width: 100vw; height: 100vh;
+      background: #000;
+      opacity: 1;
+      z-index: 1;
+      pointer-events: none;
+      background-image: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.07) 0px,
+        rgba(255,255,255,0.07) 2px,
+        transparent 2px,
+        transparent 6px
+      );
+      animation: vhs-flicker 0.22s infinite linear;
+    }
+    @keyframes vhs-flicker {
+      0% { filter: brightness(1) blur(0.7px);}
+      50% { filter: brightness(0.95) blur(1.5px);}
+      100% { filter: brightness(1) blur(0.7px);}
+    }
+    .login-modal {
+      position: absolute;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      background: rgba(0,0,0,0.98);
+      border-radius: 6px;
+      padding: 2.2rem 1.2rem 1.5rem 1.2rem;
+      box-shadow: 0 0 0 #000;
+      text-align: center;
+      min-width: 300px;
+      max-width: 90vw;
+      color: #e0e0e0;
+      font-family: 'Courier New', Courier, monospace;
+      border: 2px solid #222;
+      letter-spacing: 0.04em;
+    }
+    .login-logo {
+      margin-bottom: 1.2rem;
+    }
+    .logo-c {
+      display: inline-block;
+      font-size: 3.2rem;
+      font-weight: bold;
+      color: #fff;
+      background: #000;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      width: 3.5rem;
+      height: 3.5rem;
+      line-height: 3.3rem;
+      letter-spacing: 0.08em;
+      box-shadow: 0 0 8px #fff2, 0 0 2px #fff8;
+      margin-bottom: 0.2rem;
+      font-family: 'Courier New', Courier, monospace;
+      text-shadow:
+        0 0 2px #fff,
+        0 0 8px #fff2;
+    }
+    .login-modal h2 {
+      margin: 0 0 1.2rem 0;
+      font-size: 1.1rem;
+      color: #fff;
+      letter-spacing: 0.08em;
+      text-shadow: 0 1px 6px #fff1;
+      font-family: 'Courier New', Courier, monospace;
+      font-weight: bold;
+    }
+    #loginForm {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin-bottom: 1.2rem;
+    }
+    #loginForm input {
+      padding: 0.5rem 0.8rem;
+      border-radius: 3px;
+      border: 1.5px solid #444;
+      font-size: 1rem;
+      background: #111;
+      color: #e0e0e0;
+      outline: none;
+      transition: border 0.2s;
+      font-family: 'Courier New', Courier, monospace;
+      box-shadow: none;
+      letter-spacing: 0.04em;
+    }
+    #loginForm input:focus {
+      border: 1.5px solid #fff;
+      background: #181818;
+    }
+    #loginForm button {
+      padding: 0.5rem 1.5rem;
+      border-radius: 3px;
+      border: 1.5px solid #fff;
+      background: #000;
+      color: #fff;
+      font-weight: bold;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      margin-top: 0.5rem;
+      letter-spacing: 0.08em;
+      box-shadow: 0 0 0 #000;
+    }
+    #loginForm button:hover {
+      background: #111;
+      color: #00ffe7;
+      border-color: #00ffe7;
+    }
+    .login-close {
+      position: absolute;
+      right: 1.1rem;
+      top: 1.1rem;
+      background: none;
+      border: none;
+      font-size: 1.3rem;
+      color: #fff;
+      cursor: pointer;
+      font-weight: bold;
+      transition: color 0.2s;
+      z-index: 3;
+      opacity: 0.7;
+    }
+    .login-close:hover { color: #00ffe7; opacity: 1; }
+    #loginMsg {
+      color: #FFD700;
+      margin-top: 0.7rem;
+      font-size: 1.05rem;
+      min-height: 1.2em;
+      letter-spacing: 0.04em;
+      text-shadow: 0 1px 8px #23294699;
+      font-family: 'Courier New', Courier, monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="vhs-bg"></div>
+  <div class="login-modal">
+    <button class="login-close" onclick="window.location.href='portal.html'">✕</button>
+    <div class="login-logo">
+      <span class="logo-c">C</span>
+    </div>
+    <h2>ACCESO DE EMPLEADO</h2>
+    <form id="loginForm" autocomplete="off" onsubmit="return false;">
+      <input type="text" id="loginUser" placeholder="Usuario" autocomplete="off" required />
+      <input type="password" id="loginPass" placeholder="Contraseña" autocomplete="off" required />
+      <button type="submit">INGRESAR</button>
+    </form>
+    <div id="loginMsg"></div>
+  </div>
+  <script>
+    document.getElementById("loginForm").onsubmit = function() {
+      const user = document.getElementById("loginUser").value.trim();
+      const pass = document.getElementById("loginPass").value.trim();
+      const msg = document.getElementById("loginMsg");
+      if (!user || !pass) {
+        msg.textContent = "Completa ambos campos.";
+        return false;
+      }
+      // Aquí puedes poner tu lógica real de autenticación
+      msg.textContent = "Acceso denegado.";
+      return false;
+    };
+  </script>
+</body>
+</html>
