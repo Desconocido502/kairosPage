@@ -31,3 +31,10 @@ El icono HD es que el debe ir en el titulo de Chrono | kairos (kairo esta en png
 en about us actualizar las descripcion de cada usuario y las img tambien estan en drive ✅
 En la vista de krs, en la parte de "Be part of our most ambitious project" en los bts agregar lo del punto 4.5 y usar el aguila
 actualizar los texto de krs y about us ✅
+
+
+Texto ordenado en 3 parrafos ✅
+el banner quitarle lo opacado y alargarlo (altura) mas ✅
+"Invest in Kairos, Chrono's cryptocurrency!" -> "Invest in $KRS, Chrono's cryptocurrency!" ✅
+separar el boton del texto ✅
+Arreglar el fondo del footer de redeem ✅
