@@ -4,8 +4,41 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Chrono | Redeem</title>
+  <link rel="icon" href="./img/Icono_HD.ico" type="image/x-icon">
   <link rel="stylesheet" href="./styles/styles.css" />
   <style>
+    /* Estructura para footer pegado */
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      transition: background 0.3s, color 0.3s;
+    }
+    
+    /* Contenedor principal que ocupa el espacio disponible */
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    /* Clase específica para footer pegado */
+    .footer-sticky {
+      margin-top: auto;
+      background: var(--color-header-bg, #fff);
+      color: var(--color-header-text, #111);
+      text-align: center;
+      padding: 1.5rem;
+      border-top: 1px solid var(--color-btn-border, #e0e0e0);
+      transition: background 0.3s, color 0.3s, border-color 0.3s;
+    }
+    
     section#canje {
       background-color: #f0f4f8;
       text-align: center;
@@ -101,37 +134,51 @@
       color: #111;
     }
 
+    body.light-mode .footer-sticky {
+      background: #fff;
+      color: #111;
+      border-top-color: #e0e0e0;
+    }
+
     /* Dark mode styles */
     body.dark-mode {
       background-color: #111;
       color: #fff;
     }
+
+    body.dark-mode .footer-sticky {
+      background: #111;
+      color: #fff;
+      border-top-color: #333;
+    }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Chrono Corp</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About Us</a>
-      <a href="technology.html">Technology</a>
-      <a href="investment.html">$KRS</a>
-      <a href="contact.html">Contact</a>
-      <a href="portal.html">Redeem</a>
-    </nav>
-    <button id="theme-toggle" aria-label="Toggle dark/light mode" class="theme-switch"></button>
-  </header>
+  <div class="main-content">
+    <header>
+      <h1>Chrono Corp</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="technology.html">Technology</a>
+        <a href="investment.html">$KRS</a>
+        <a href="contact.html">Contact</a>
+        <a href="portal.html">Redeem</a>
+      </nav>
+      <button id="theme-toggle" aria-label="Toggle dark/light mode" class="theme-switch"></button>
+    </header>
 
-  <section id="canje">
-    <h2>Redeem your Coupon</h2>
-    <form id="canjeForm" onsubmit="canjear(event)">
-      <input type="text" id="codigoCupon" placeholder="Enter your coupon code" autocomplete="off" required />
-      <button type="submit">Redeem</button>
-    </form>
-    <div id="canjeMensaje"></div>
-  </section>
+    <section id="canje">
+      <h2>Redeem your Coupon</h2>
+      <form id="canjeForm" onsubmit="canjear(event)">
+        <input type="text" id="codigoCupon" placeholder="Enter your coupon code" autocomplete="off" required />
+        <button type="submit">Redeem</button>
+      </form>
+      <div id="canjeMensaje"></div>
+    </section>
+  </div>
 
-  <footer>
+  <footer class="footer-sticky">
     &copy; 2025 Chrono · All rights reserved
     <br>
     <small style="display:block;color:#888;font-size:0.75rem;margin-top:0.2rem;letter-spacing:0.1px;">

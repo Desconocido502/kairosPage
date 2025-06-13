@@ -15,11 +15,19 @@ Generales
 2.1. Colocar mas info "Manuel me la pasara" ✅
 
 #3 Technology
-3.1. Hacer que la X de la ventana emergente en el tempus relay funcione.
+3.1. Hacer que la X de la ventana emergente en el tempus relay funcione. ✅
 
 #4 $KRS
 4.1 Borrar el botón How to use the tempus y temporal Return Simulator ✅
-4.2 Borrar el disclamer del foother. ✅ //se coloco un nuevo disclaimer
-4.3 Mover la ruleta que sale después de esperar 2 minutos. 
+4.2 Borrar el disclamer del footer. ✅ //se coloco un nuevo disclaimer
+4.3 Mover la ruleta que sale después de esperar 2 minutos. (Esto ya no) ✅
 4.4 Realizar cambios explicados en la primera imagen.
 4.5 Realizar cambio en imagen #2 . Boton del dex, en fondo negro y letra Roja "Debido a que no funciona aun". 
+
+Dejar el footer de contact y redeem pegados al final de la pagina ✅
+Elimninar el disclaimer de la pagina que sale en el krds y poner el nuevo ✅
+La imagen de SEO BANNER colocarlos en krs arriba de invest in kaiross, (tomar la idea de como esta home, pero sin el carrusel)
+El icono HD es que el debe ir en el titulo de Chrono | kairos (kairo esta en png pasar a ico si es necesario) ✅
+en about us actualizar las descripcion de cada usuario y las img tambien estan en drive ✅
+En la vista de krs, en la parte de "Be part of our most ambitious project" en los bts agregar lo del punto 4.5 y usar el aguila
+actualizar los texto de krs y about us ✅
